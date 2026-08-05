@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriel França — Network & Security Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a0f;
+    --surface: #0c1219;
+    --surface-raised: #111920;
+    --accent: #00e5c8;
+    --accent-dim: #00b89e;
+    --accent-glow: rgba(0, 229, 200, 0.12);
+    --accent-hot: #ff3d71;
+    --text-primary: #e4e8ec;
+    --text-muted: #5c6a78;
+    --text-dim: #3a4653;
+    --border: #1a2530;
+    --font-display: 'Syne', sans-serif;
+    --font-name: 'Bebas Neue', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+    --font-serif: 'Instrument Serif', serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-dim) var(--bg);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse 600px 600px at 10% 20%, rgba(0, 229, 200, 0.03) 0%, transparent 70%),
+      radial-gradient(ellipse 400px 400px at 85% 60%, rgba(255, 61, 113, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .grid-lines {
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 80px 100%;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ====== NAVIGATION ====== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(6, 10, 15, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--text-dim); font-weight: 400; }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transition: color 0.25s ease;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ====== HERO ====== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 100px;
+    position: relative;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease 0.2s forwards;
+  }
+
+  .hero-label::before {
+    content: '//';
+    margin-right: 8px;
+    color: var(--text-dim);
+  }
+
+  .hero-name-wrapper {
+    margin-bottom: 32px;
+    min-height: clamp(52px, 8vw, 104px);
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-name {
+    font-family: var(--font-name);
+    font-weight: 400;
+    font-size: clamp(60px, 9vw, 120px);
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    display: inline;
+  }
+
+  .typing-cursor {
+    display: inline-block;
+    width: 4px;
+    height: clamp(50px, 8vw, 100px);
+    background: var(--accent);
+    margin-left: 8px;
+    vertical-align: baseline;
+    opacity: 0;
+  }
+
+  .typing-cursor.visible {
+    opacity: 1;
+    animation: pipeBlink 1s step-end infinite;
+  }
+
+  @keyframes pipeBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(16px, 2.2vw, 22px);
+    letter-spacing: 0.02em;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.4s forwards;
+  }
+
+  .hero-sub {
+    max-width: 520px;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.7s forwards;
+  }
+
+  .hero-sub strong { color: var(--text-primary); font-weight: 500; }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 14px 32px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--accent);
+    transition: left 0.35s ease;
+    z-index: 0;
+  }
+
+  .btn:hover::before { left: 0; }
+  .btn:hover { color: var(--bg); }
+  .btn span { position: relative; z-index: 1; }
+
+  .btn-ghost {
+    border-color: var(--border);
+    color: var(--text-muted);
+  }
+
+  .btn-ghost::before { background: var(--surface-raised); }
+  .btn-ghost:hover { color: var(--text-primary); }
+
+  .terminal-line {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+    opacity: 0;
+    animation: fadeIn 0.6s ease 1.3s forwards;
+    margin-top: 48px;
+  }
+
+  .terminal-line .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: var(--accent);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  /* ====== SECTIONS ====== */
+  section {
+    padding: 120px 0;
+    position: relative;
+  }
+
+  .section-header { margin-bottom: 64px; }
+
+  .section-number {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-number::before { content: '['; color: var(--text-dim); }
+  .section-number::after { content: ']'; color: var(--text-dim); }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(32px, 4vw, 52px);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .section-title em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--border) 0%, var(--accent-dim) 50%, var(--border) 100%);
+    opacity: 0.4;
+  }
+
+  /* ====== ABOUT ====== */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  .about-text p strong { color: var(--text-primary); font-weight: 500; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+
+  .stat-card:hover { border-color: var(--accent-dim); }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .stat-card:hover::before { opacity: 1; }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 36px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+  }
+
+  /* ====== EXPERIENCE ====== */
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, var(--accent), var(--border) 80%);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 48px;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .timeline-item.visible { animation: fadeUp 0.6s ease forwards; }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -44px; top: 8px;
+    width: 9px; height: 9px;
+    border: 2px solid var(--accent);
+    background: var(--bg);
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .timeline-item:hover::before {
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+  }
+
+  .timeline-date {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent-dim);
+    margin-bottom: 8px;
+  }
+
+  .timeline-role {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .timeline-company {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .timeline-company::before { content: '@ '; color: var(--accent-dim); }
+
+  .timeline-desc {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .timeline-desc li {
+    color: var(--text-muted);
+    font-size: 13px;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .timeline-desc li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--accent-dim);
+    font-family: var(--font-mono);
+  }
+
+  /* ====== PROJECTS ====== */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent-dim);
+    transform: translateY(-4px);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+  }
+
+  .project-card-header {
+    padding: 28px 32px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .project-icon {
+    font-family: var(--font-mono);
+    font-size: 32px;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .project-badge {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 4px 10px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .project-body {
+    padding: 20px 32px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .project-subtitle {
+    font-size: 12px;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+  }
+
+  .project-stack-tag {
+    font-size: 10px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    transition: all 0.25s ease;
+  }
+
+  .project-stack-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  .project-link-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .project-link {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent-dim);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.25s ease;
+  }
+
+  .project-link:hover { color: var(--accent); }
+
+  .project-link::before {
+    content: '->';
+    font-family: var(--font-mono);
+  }
+
+  /* ====== SKILLS ====== */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .skill-category {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s ease;
+  }
+
+  .skill-category:hover {
+    border-color: var(--accent-dim);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .skill-category-icon {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .skill-category h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .skill-tag {
+    font-size: 11px;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    transition: all 0.25s ease;
+  }
+
+  .skill-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  /* ====== EDUCATION ====== */
+  .edu-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 36px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .edu-card:hover { border-color: var(--accent-dim); }
+
+  .edu-card-type {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: inline-block;
+    border: 1px solid var(--accent-dim);
+    padding: 4px 10px;
+  }
+
+  .edu-card h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .edu-card .institution { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+  .edu-card .period { font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ====== CERTIFICATIONS ====== */
+  .cert-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+
+  .cert-item:hover {
+    border-color: var(--accent-dim);
+    background: var(--surface-raised);
+  }
+
+  .cert-dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(0, 229, 200, 0.3);
+  }
+
+  .cert-info { flex: 1; }
+
+  .cert-name { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+  .cert-issuer { font-size: 11px; color: var(--text-muted); }
+  .cert-year { font-family: var(--font-mono); font-size: 11px; color: var(--accent-dim); letter-spacing: 0.1em; flex-shrink: 0; }
+
+  /* ====== LANGUAGES ====== */
+  .lang-row { display: flex; gap: 32px; margin-top: 48px; }
+
+  .lang-item { display: flex; align-items: center; gap: 12px; }
+  .lang-level { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-dim); }
+  .lang-name { font-family: var(--font-display); font-weight: 600; font-size: 18px; }
+
+  /* ====== CONTACT ====== */
+  .contact-section { padding: 120px 0 80px; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .contact-text h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .contact-text p { color: var(--text-muted); margin-bottom: 40px; line-height: 1.8; }
+
+  .contact-links { display: flex; flex-direction: column; gap: 16px; }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    background: var(--surface-raised);
+    transform: translateX(8px);
+  }
+
+  .contact-link-icon { color: var(--accent); font-size: 18px; width: 24px; text-align: center; }
+
+  .contact-link-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    margin-bottom: 2px;
+  }
+
+  /* ====== FOOTER ====== */
+  footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text { font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; }
+  .footer-text span { color: var(--accent-dim); }
+
+  /* ====== ANIMATIONS ====== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .reveal { opacity: 0; transform: translateY(30px); }
+  .reveal.visible { animation: fadeUp 0.7s ease forwards; }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 900px) {
+    .container { padding: 0 24px; }
+    nav { padding: 16px 24px; }
+    .nav-links { gap: 20px; }
+    .nav-links a { font-size: 10px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .edu-cards { grid-template-columns: 1fr; }
+    .cert-list { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    section { padding: 80px 0; }
+    .grid-lines { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .lang-row { flex-direction: column; gap: 16px; }
+    .hero-cta { flex-direction: column; }
+    .btn { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-lines"></div>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#" class="nav-logo">GF<span>.com.br</span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#experiencia">Experiência</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#habilidades">Habilidades</a></li>
+    <li><a href="#formacao">Formação</a></li>
+    <li><a href="#certificacoes">Cursos e Certificados</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">Analista de Redes & Segurança da Informação</div>
+    <div class="hero-name-wrapper">
+      <h1 class="hero-name" id="typedName"></h1>
+      <span class="typing-cursor" id="typingCursor"></span>
+    </div>
+    <div class="hero-subtitle">Protegendo infraestruturas. Resolvendo incidentes.</div>
+    <p class="hero-sub">
+      Mais de <strong>5 anos de experiência</strong> em suporte N2, administração de firewalls NGFW, resposta a incidentes e ambientes MSSP. Foco em <strong>resolução rápida</strong>, documentação técnica e melhoria contínua.
+    </p>
+    <div class="hero-cta">
+      <a href="#contato" class="btn"><span>Entrar em contato</span></a>
+      <a href="#experiencia" class="btn btn-ghost"><span>Ver trajetória</span></a>
+    </div>
+    <div class="terminal-line">
+      > ready to secure your network _
+      <span class="cursor"></span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Sobre <em>mim</em></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          <strong>Analista de Redes e Segurança da Informação</strong> com mais de 5 anos de experiência em suporte N2, administração de firewalls NGFW (FortiGate, pfSense) e resposta a incidentes.
+        </p>
+        <p>
+          Expertise em <strong>troubleshooting avançado</strong>, análise de logs, monitoramento de ambientes de segurança, configuração de soluções Network Security e suporte técnico a clientes.
+        </p>
+        <p>
+          Forte vivência em <strong>ambientes MSSP-like</strong>, políticas de segurança, hardening e ferramentas ITSM (GLPI). Inglês avançado e foco em resolução rápida de incidentes, documentação técnica e melhoria contínua de processos.
+        </p>
+      </div>
+      <div class="stat-grid reveal">
+        <div class="stat-card">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Anos de experiência</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">13</div>
+          <div class="stat-label">Certificações</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">N2</div>
+          <div class="stat-label">Nível de suporte</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">EN</div>
+          <div class="stat-label">Inglês avançado</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIÊNCIA -->
+<section id="experiencia">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Experiência <em>profissional</em></h2>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">04/2025 — 03/2026</div>
+        <div class="timeline-role">Analista de Redes Pleno</div>
+        <div class="timeline-company">TalkD Solutions Brazil</div>
+        <ul class="timeline-desc">
+          <li>Suporte técnico N2 em soluções de Network Security e infraestrutura, com foco em troubleshooting avançado e análise de causa raiz</li>
+          <li>Configuração, administração e manutenção de firewalls NGFW FortiGate, SD-WAN (VeloCloud) e Meraki</li>
+          <li>Monitoramento proativo de tráfego de rede, análise de logs e identificação preventiva de riscos e vulnerabilidades</li>
+          <li>Diagnóstico e resolução de incidentes em redes last mile (latência, perda de pacotes e oscilações), incluindo tratativas com ISPs e fabricantes</li>
+          <li>Testes de conectividade, validação de throughput e documentação técnica de incidentes e soluções</li>
+          <li>Cumprimento de SLA com resolução rápida de chamados via plataforma ITSM</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">04/2025 — 06/2025</div>
+        <div class="timeline-role">Analista de Segurança da Informação Pleno Bilingüe</div>
+        <div class="timeline-company">Teleperformance</div>
+        <ul class="timeline-desc">
+          <li>Atendimento e resolução de incidentes e requisições técnicas de segurança em ambientes corporativos</li>
+          <li>Monitoramento contínuo de eventos de segurança, análise de logs e investigação de incidentes</li>
+          <li>Execução de testes de vulnerabilidades, avaliação de riscos e hardening de sistemas Linux e Windows</li>
+          <li>Apoio em auditorias de conformidade (ISO 27001, LGPD e GDPR) e gestão de controles de segurança</li>
+          <li>Elaboração e atualização de documentação técnica de processos e incidentes</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">04/2024 — 04/2025</div>
+        <div class="timeline-role">Analista de Redes Pleno</div>
+        <div class="timeline-company">TalkD Solutions Brazil</div>
+        <ul class="timeline-desc">
+          <li>Suporte técnico N2 em soluções de Network Security e infraestrutura</li>
+          <li>Configuração e manutenção de firewalls NGFW FortiGate, SD-WAN (VeloCloud) e Meraki</li>
+          <li>Monitoramento proativo de tráfego e análise de logs para identificação preventiva de riscos</li>
+          <li>Diagnóstico de incidentes em redes last mile com tratativas diretas com ISPs e fabricantes</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">04/2023 — 04/2024</div>
+        <div class="timeline-role">Analista de Redes</div>
+        <div class="timeline-company">Gerbit Tecnologia</div>
+        <ul class="timeline-desc">
+          <li>Suporte técnico N2 e gerenciamento de chamados via GLPI</li>
+          <li>Implementação, configuração e monitoramento de firewalls (pfSense e Debian)</li>
+          <li>Implantação e administração de soluções de virtualização (Proxmox e Hyper-V)</li>
+          <li>Administração de servidores Windows e Linux, incluindo hardening e manutenção de infraestrutura de rede</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">12/2019 — 03/2023</div>
+        <div class="timeline-role">Analista de Segurança da Informação</div>
+        <div class="timeline-company">Vault Cyber Security</div>
+        <ul class="timeline-desc">
+          <li>Testes de penetração, análise de riscos e investigação de incidentes de segurança</li>
+          <li>Implantação de políticas de segurança, controles de acesso e hardening de sistemas</li>
+          <li>Apoio em auditorias ISO 27001 e LGPD, garantindo conformidade e boas práticas</li>
+          <li>Uso de Python, Bash e SQL para automação, análise de logs e vulnerabilidades (OWASP)</li>
+          <li>Threat Intelligence e OSINT no monitoramento de ameaças</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Projetos <em>pessoais</em></h2>
+    </div>
+    <div class="projects-grid reveal">
+
+      <!-- HOMELAB -->
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="project-icon">&gt;_</span>
+          <span class="project-badge">Homelab</span>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Servidor Homelab Proxmox</div>
+          <div class="project-subtitle">Infraestrutura doméstica self-hosted</div>
+          <p class="project-desc">
+            Laboratório pessoal virtualizado com Proxmox VE como hypervisor, rodando múltiplas VMs e containers para estudo, segurança e uso diário. A infraestrutura inclui firewall dedicado, servidor de mídia, filtragem DNS e armazenamento em nuvem privada — tudo auto-hospedado e gerenciado de ponta a ponta.
+          </p>
+          <div class="project-stack">
+            <span class="project-stack-tag">Proxmox VE</span>
+            <span class="project-stack-tag">pfSense</span>
+            <span class="project-stack-tag">Jellyfin</span>
+            <span class="project-stack-tag">Pi-hole</span>
+            <span class="project-stack-tag">Nextcloud</span>
+            <span class="project-stack-tag">Linux</span>
+            <span class="project-stack-tag">DNS Filtering</span>
+          </div>
+          <div class="project-link-row">
+            <span class="project-link" style="cursor: default;">Self-hosted</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENUM-SUB -->
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="project-icon">&lt;/&gt;</span>
+          <span class="project-badge">Open Source</span>
+        </div>
+        <div class="project-body">
+          <div class="project-name">enum-sub</div>
+          <div class="project-subtitle">Ferramenta de enumeração de subdomínios</div>
+          <p class="project-desc">
+            Ferramenta Python para enumeração de subdomínios via brute force com wordlists e resolução DNS (registros A). Utiliza multithreading para escaneamento paralelo, exibe status em tempo real no terminal e possui estrutura modular e leve. Projetada para testes de segurança autorizados e pesquisa em ambientes controlados.
+          </p>
+          <div class="project-stack">
+            <span class="project-stack-tag">Python 3</span>
+            <span class="project-stack-tag">dnspython</span>
+            <span class="project-stack-tag">Multithreading</span>
+            <span class="project-stack-tag">DNS Enumeration</span>
+            <span class="project-stack-tag">OSINT</span>
+          </div>
+          <div class="project-link-row">
+            <a href="https://github.com/staiton/enum-sub" target="_blank" class="project-link">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HABILIDADES -->
+<section id="habilidades">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">04</span>
+      <h2 class="section-title">Habilidades <em>técnicas</em></h2>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-category">
+        <span class="skill-category-icon">&lt;/&gt;</span>
+        <h3>Redes & Conectividade</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">SD-WAN</span>
+          <span class="skill-tag">Firewall</span>
+          <span class="skill-tag">FortiGate</span>
+          <span class="skill-tag">VeloCloud</span>
+          <span class="skill-tag">Meraki</span>
+          <span class="skill-tag">pfSense</span>
+          <span class="skill-tag">Análise de Tráfego</span>
+          <span class="skill-tag">Troubleshooting Last Mile</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <span class="skill-category-icon">&#x1f6e1;</span>
+        <h3>Segurança da Informação</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">ISO 27001</span>
+          <span class="skill-tag">LGPD</span>
+          <span class="skill-tag">GDPR</span>
+          <span class="skill-tag">Hardening Linux</span>
+          <span class="skill-tag">Hardening Windows</span>
+          <span class="skill-tag">Testes de Vulnerabilidades</span>
+          <span class="skill-tag">Threat Intelligence</span>
+          <span class="skill-tag">OSINT</span>
+          <span class="skill-tag">Monitoramento de Eventos</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <span class="skill-category-icon">&#x2699;</span>
+        <h3>Infra & Ferramentas</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Proxmox</span>
+          <span class="skill-tag">Hyper-V</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Windows Server</span>
+          <span class="skill-tag">GLPI</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Bash</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">OWASP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lang-row reveal">
+      <div class="lang-item">
+        <span class="lang-name">Português</span>
+        <span class="lang-level">Nativo</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">Inglês</span>
+        <span class="lang-level">Avançado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FORMAÇÃO -->
+<section id="formacao">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">05</span>
+      <h2 class="section-title">Formação <em>acadêmica</em></h2>
+    </div>
+    <div class="edu-cards reveal">
+      <div class="edu-card">
+        <span class="edu-card-type">Pós-graduação</span>
+        <h3>Segurança da Informação</h3>
+        <p class="institution">Estácio — Especialização Lato Sensu</p>
+        <p class="period">Jan/2026 — Jun/2027</p>
+      </div>
+      <div class="edu-card">
+        <span class="edu-card-type">Graduação</span>
+        <h3>Redes de Computadores</h3>
+        <p class="institution">Estácio — Curso Superior de Tecnologia</p>
+        <p class="period">Jul/2023 — Dez/2025</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CURSOS E CERTIFICADOS -->
+<section id="certificacoes">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">06</span>
+      <h2 class="section-title">Cursos e <em>certificados</em></h2>
+    </div>
+    <div class="cert-list reveal">
+      <div class="cert-item">
+        <span class="cert-dot"></span>
+        <div class="cert-info">
+          <div class="cert-name">Google Cybersecurity</div>
+          <div class="cert-issuer">Google</div>
+        </div>
+        <span class="cert-year">2025</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-dot"></span>
+        <div class="cert-info">
+          <div class="cert-name">Network Defense</div>
+          <div class="cert-issuer">Cisco</div>
+        </div>
+        <span class="cert-year">2024</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-dot"></span>
+        <div class="cert-info">
+          <div class="cert-name">Hackers do Bem — Formação em Cibersegurança</div>
+          <div class="cert-issuer">Programa Hackers do Bem</div>
+        </div>
+        <span class="cert-year">2024</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-dot"></span>
+        <div class="cert-info">
+          <div class="cert-name">Network Technician Career Path</div>
+          <div class="cert-issuer">Cisco</div>
+        </div>
+        <span class="cert-year">2024</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-dot"></span>
+        <div class="cert-info">
+          <div class="cert-name">Segurança de Endpoints</div>
+          <div class="cert-issuer">Cisco</div>
+        </div>
+        <span class="cert-year">2024</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-dot"></span>
+        <div class="cert-info">
+          <div class="cert-name">Python Essentials 1</div>
+          <div class="cert-issuer">Cisco</div>
+        </div>
+        <span class="cert-year">2023</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-dot"></span>
+        <div class="cert-info">
+          <div class="cert-name">CyberOps Associate</div>
+          <div class="cert-issuer">Cisco</div>
+        </div>
+        <span class="cert-year">2022</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-dot"></span>
+        <div class="cert-info">
+          <div class="cert-name">NDG Linux Essentials</div>
+          <div class="cert-issuer">Cisco Networking Academy</div>
+        </div>
+        <span class="cert-year">2022</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-dot"></span>
+        <div class="cert-info">
+          <div class="cert-name">CCNA: Introdução às Redes</div>
+          <div class="cert-issuer">Cisco Networking Academy</div>
+        </div>
+        <span class="cert-year">2022</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-dot"></span>
+        <div class="cert-info">
+          <div class="cert-name">Fundamentos de Cibersegurança</div>
+          <div class="cert-issuer">Cisco</div>
+        </div>
+        <span class="cert-year">2021</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-dot"></span>
+        <div class="cert-info">
+          <div class="cert-name">Administrador de Redes</div>
+          <div class="cert-issuer">SENAC RN</div>
+        </div>
+        <span class="cert-year">2021</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-dot"></span>
+        <div class="cert-info">
+          <div class="cert-name">Fundamentos do Suporte Técnico</div>
+          <div class="cert-issuer">Google</div>
+        </div>
+        <span class="cert-year">2020</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTATO -->
+<section id="contato" class="contact-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Vamos <em>conversar</em></h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-text">
+        <h3>Disponível para oportunidades em redes, segurança da informação e cybersec.</h3>
+        <p>
+          Estou aberto a novas oportunidades, projetos e colaborações. Entre em contato por qualquer um dos canais abaixo.
+        </p>
+        <a href="mailto:gabrielfranca5592@gmail.com" class="btn" style="display: inline-block;"><span>Enviar e-mail</span></a>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:gabrielfranca5592@gmail.com" class="contact-link">
+          <span class="contact-link-icon">@</span>
+          <div>
+            <div class="contact-link-label">E-mail</div>
+            gabrielfranca5592@gmail.com
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/gabriel-franca5592" target="_blank" class="contact-link">
+          <span class="contact-link-icon">in</span>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            linkedin.com/in/gabriel-franca5592
+          </div>
+        </a>
+        <a href="https://github.com/staiton" target="_blank" class="contact-link">
+          <span class="contact-link-icon">&lt;/&gt;</span>
+          <div>
+            <div class="contact-link-label">GitHub</div>
+            github.com/staiton
+          </div>
+        </a>
+        <div class="contact-link" style="cursor: default;">
+          <span class="contact-link-icon">&#x2302;</span>
+          <div>
+            <div class="contact-link-label">Localização</div>
+            Natal, RN — Brasil
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    <span class="footer-text">&copy; 2026 Gabriel França <span>|</span> Todos os direitos reservados</span>
+    <span class="footer-text">Construído com <span>segurança</span> em mente</span>
+  </div>
+</footer>
+
+<!-- TYPING ANIMATION -->
+<script>
+  (function() {
+    const nameEl = document.getElementById('typedName');
+    const cursorEl = document.getElementById('typingCursor');
+    const fullName = 'Gabriel França';
+    let i = 0;
+
+    cursorEl.classList.remove('visible');
+
+    function typeChar() {
+      if (i < fullName.length) {
+        nameEl.textContent += fullName.charAt(i);
+        i++;
+        setTimeout(typeChar, 100 + Math.random() * 80);
+      } else {
+        cursorEl.classList.add('visible');
+      }
+    }
+
+    setTimeout(typeChar, 800);
+  })();
+</script>
+
+<!-- SCROLL REVEAL -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .timeline-item').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 200;
+      if (scrollY >= top) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.style.color = '';
+      if (link.getAttribute('href') === '#' + current) {
+        link.style.color = 'var(--accent)';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
