@@ -15,13 +15,14 @@
     }
 
     :root {
-      --deep-blue: #082B3A;
-      --deep-blue-light: #0c3d50;
-      --deep-blue-surface: #0e4558;
-      --turquoise: #12B8A6;
-      --turquoise-dim: rgba(18, 184, 166, 0.12);
-      --yellow: #F4C85D;
-      --yellow-dim: rgba(244, 200, 93, 0.12);
+      --azul-profundo: #082B3A;
+      --azul-light: #0c3d50;
+      --azul-surface: #0e4558;
+      --turquesa: #12B8A6;
+      --turquesa-dim: rgba(18, 184, 166, 0.12);
+      --turquesa-glow: rgba(18, 184, 166, 0.25);
+      --amarelo: #F4C95D;
+      --amarelo-dim: rgba(244, 201, 93, 0.12);
       --off-white: #F6F7F2;
       --text-primary: #F6F7F2;
       --text-body: #b8ccd4;
@@ -35,7 +36,7 @@
 
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--deep-blue);
+      background: var(--azul-profundo);
       color: var(--text-primary);
       min-height: 100vh;
       min-height: 100dvh;
@@ -45,35 +46,35 @@
       position: relative;
     }
 
+    /* Padrao de pontos — derivado do "Ponto de Contato" */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(18, 184, 166, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(18, 184, 166, 0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
+      background-image: radial-gradient(circle, rgba(18, 184, 166, 0.06) 1px, transparent 1px);
+      background-size: 24px 24px;
       pointer-events: none;
       z-index: 0;
     }
 
+    /* Glow ambiente — derivado da "Curva Principal" */
     body::after {
       content: '';
       position: fixed;
-      top: -140px;
+      top: -160px;
       left: 50%;
       transform: translateX(-50%);
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(18, 184, 166, 0.08) 0%, transparent 65%);
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(ellipse, rgba(18, 184, 166, 0.07) 0%, transparent 60%);
       pointer-events: none;
       z-index: 0;
-      animation: pulseGlow 5s ease-in-out infinite;
+      animation: ambientPulse 6s ease-in-out infinite;
     }
 
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-      50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+    @keyframes ambientPulse {
+      0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
     }
 
     .container {
@@ -90,7 +91,7 @@
     }
 
     /* =============================================
-       LOGO / HEADER
+       SIMBOLO + ANIMACAO (Arcos de Sinal)
        ============================================= */
     .header {
       text-align: center;
@@ -100,74 +101,162 @@
       animation: fadeDown 0.8s ease forwards;
     }
 
-    .logo-container {
+    .symbol-container {
       position: relative;
-      display: inline-block;
-      margin-bottom: 20px;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 24px;
     }
 
-    .logo-ring {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      border: 2px solid rgba(18, 184, 166, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      background: var(--deep-blue-light);
-      overflow: hidden;
-      box-shadow:
-        0 8px 32px rgba(18, 184, 166, 0.15),
-        0 0 0 6px var(--deep-blue),
-        0 0 0 8px rgba(18, 184, 166, 0.1);
-    }
+    /* Simbolo central */
+    .symbol-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--off-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 30px var(--turquesa-glow),
+    0 0 60px rgba(18, 184, 166, 0.1);
+  z-index: 3;
+}
 
-    .logo-ring::before {
-      content: '';
-      position: absolute;
-      inset: -5px;
-      border-radius: 50%;
-      border: 1px solid rgba(18, 184, 166, 0.15);
-      animation: rotateRing 16s linear infinite;
-      border-top-color: var(--yellow);
-      border-right-color: transparent;
-      border-bottom-color: transparent;
-    }
-
-    @keyframes rotateRing {
-      to { transform: rotate(360deg); }
-    }
-
-    .logo-ring img {
-      width: 100%;
-      height: 100%;
+    .symbol-core img {
+      width: 90%;
+      height: 90%;
       object-fit: contain;
       display: block;
     }
 
-    /* Placeholder antes de colocar a logo */
-    .logo-placeholder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-    }
-
-    .logo-placeholder-text {
+    /* Placeholder do simbolo */
+    .symbol-placeholder {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      font-size: 2rem;
-      color: var(--turquoise);
+      font-size: 1.5rem;
+      color: var(--azul-profundo);
       letter-spacing: -1px;
     }
 
+    /* Arcos de Sinal — anel 1 (interno) */
+    .sinal-ring-1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1.5px solid rgba(18, 184, 166, 0.2);
+      border-top-color: var(--turquesa);
+      border-right-color: transparent;
+      animation: sinalRotate 4s linear infinite;
+      z-index: 2;
+    }
+
+    /* Arcos de Sinal — anel 2 (externo) */
+    .sinal-ring-2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 126px;
+      height: 126px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px solid rgba(18, 184, 166, 0.1);
+      border-bottom-color: var(--amarelo);
+      border-left-color: transparent;
+      animation: sinalRotateReverse 6s linear infinite;
+      z-index: 2;
+    }
+
+    /* Arcos de Sinal — anel 3 (mais externo, tracejado) */
+    .sinal-ring-3 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 140px;
+      height: 140px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px dashed rgba(18, 184, 166, 0.08);
+      border-top-color: rgba(18, 184, 166, 0.15);
+      animation: sinalRotate 10s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes sinalRotate {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes sinalRotateReverse {
+      to { transform: translate(-50%, -50%) rotate(-360deg); }
+    }
+
+    /* Ponto de Contato — pontos orbitais */
+    .contact-point {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      z-index: 4;
+    }
+
+    .contact-point.p1 {
+      background: var(--turquesa);
+      box-shadow: 0 0 8px var(--turquesa);
+      animation: orbit1 4s linear infinite;
+    }
+
+    .contact-point.p2 {
+      background: var(--amarelo);
+      box-shadow: 0 0 8px var(--amarelo);
+      animation: orbit2 6s linear infinite;
+    }
+
+    .contact-point.p3 {
+      background: var(--off-white);
+      box-shadow: 0 0 6px rgba(246, 247, 242, 0.4);
+      animation: orbit3 8s linear infinite;
+    }
+
+    @keyframes orbit1 {
+      0%   { top: 10px;  left: 50%; }
+      25%  { top: 50%;   left: 130px; }
+      50%  { top: 130px; left: 50%; }
+      75%  { top: 50%;   left: 10px; }
+      100% { top: 10px;  left: 50%; }
+    }
+
+    @keyframes orbit2 {
+      0%   { top: 50%;   left: 134px; }
+      25%  { top: 134px; left: 50%; }
+      50%  { top: 50%;   left: 6px; }
+      75%  { top: 6px;   left: 50%; }
+      100% { top: 50%;   left: 134px; }
+    }
+
+    @keyframes orbit3 {
+      0%   { top: 134px; left: 50%; }
+      25%  { top: 50%;   left: 6px; }
+      50%  { top: 6px;   left: 50%; }
+      75%  { top: 50%;   left: 134px; }
+      100% { top: 134px; left: 50%; }
+    }
+
+    /* =============================================
+       NOME — Lockup Principal
+       ============================================= */
     .brand-name {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
       font-size: 2.2rem;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--text-primary);
       margin-bottom: 6px;
@@ -175,7 +264,7 @@
 
     .brand-name .id {
       font-size: 1.2rem;
-      color: var(--yellow);
+      color: var(--amarelo);
       vertical-align: middle;
       letter-spacing: 2px;
     }
@@ -191,37 +280,31 @@
     }
 
     .brand-tagline .dot {
-      color: var(--yellow);
+      color: var(--amarelo);
       font-weight: 700;
     }
 
     /* =============================================
-       DIVIDER
+       CURVA PRINCIPAL — divider decorativo
        ============================================= */
-    .divider {
+    .curva-divider {
+      width: 100%;
+      height: 20px;
+      margin: 24px auto;
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin: 24px auto;
+      justify-content: center;
       opacity: 0;
       animation: fadeDown 0.7s ease 0.3s forwards;
     }
 
-    .divider-line {
-      width: 28px;
-      height: 1px;
-      background: var(--text-dim);
-    }
-
-    .divider-dot {
-      width: 5px;
-      height: 5px;
-      background: var(--yellow);
-      border-radius: 50%;
+    .curva-divider svg {
+      width: 120px;
+      height: 20px;
     }
 
     /* =============================================
-       DESCRIÇÃO
+       DESCRICAO
        ============================================= */
     .description {
       text-align: center;
@@ -240,14 +323,14 @@
       font-weight: 500;
       font-size: 0.72rem;
       letter-spacing: 0.5px;
-      color: var(--turquoise);
+      color: var(--turquesa);
       max-width: 320px;
       margin-bottom: 0;
       opacity: 0;
       animation: fadeDown 0.7s ease 0.4s forwards;
     }
 
-    .divider-2 {
+    .divider-simple {
       width: 50px;
       height: 1px;
       background: var(--text-dim);
@@ -271,8 +354,8 @@
       align-items: center;
       gap: 16px;
       padding: 16px 20px;
-      background: var(--deep-blue-light);
-      border: 1px solid rgba(18, 184, 166, 0.1);
+      background: var(--azul-light);
+      border: 1px solid rgba(18, 184, 166, 0.08);
       border-radius: 14px;
       text-decoration: none;
       color: var(--text-primary);
@@ -287,6 +370,7 @@
     .link-card:nth-child(2) { animation: fadeUp 0.6s ease 0.7s forwards; }
     .link-card:nth-child(3) { animation: fadeUp 0.6s ease 0.85s forwards; }
 
+    /* Curva de destaque no hover */
     .link-card::before {
       content: '';
       position: absolute;
@@ -301,15 +385,13 @@
 
     .link-card.whatsapp::before { background: var(--whatsapp); }
     .link-card.instagram::before { background: var(--instagram); }
-    .link-card.site::before { background: var(--turquoise); }
+    .link-card.site::before { background: var(--turquesa); }
 
     .link-card:hover::before,
-    .link-card:active::before {
-      opacity: 1;
-    }
+    .link-card:active::before { opacity: 1; }
 
     .link-card:hover {
-      background: var(--deep-blue-surface);
+      background: var(--azul-surface);
       border-color: rgba(18, 184, 166, 0.2);
       box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
       transform: translateY(-1px);
@@ -330,9 +412,7 @@
       transition: transform 0.3s ease;
     }
 
-    .link-card:hover .link-icon-wrap {
-      transform: scale(1.05);
-    }
+    .link-card:hover .link-icon-wrap { transform: scale(1.05); }
 
     .whatsapp .link-icon-wrap {
       background: rgba(37, 211, 102, 0.1);
@@ -343,18 +423,14 @@
       border: 1px solid rgba(225, 48, 108, 0.15);
     }
     .site .link-icon-wrap {
-      background: var(--turquoise-dim);
+      background: var(--turquesa-dim);
       border: 1px solid rgba(18, 184, 166, 0.15);
     }
 
-    .link-icon-wrap svg {
-      width: 22px;
-      height: 22px;
-    }
-
+    .link-icon-wrap svg { width: 22px; height: 22px; }
     .whatsapp .link-icon-wrap svg { fill: var(--whatsapp); }
     .instagram .link-icon-wrap svg { fill: var(--instagram); }
-    .site .link-icon-wrap svg { fill: var(--turquoise); }
+    .site .link-icon-wrap svg { fill: var(--turquesa); }
 
     .link-text { flex: 1; }
 
@@ -382,7 +458,39 @@
 
     .link-card:hover .link-arrow {
       transform: translateX(4px);
-      color: var(--turquoise);
+      color: var(--turquesa);
+    }
+
+    /* =============================================
+       PADRAO DE CONEXAO — decoracao inferior
+       ============================================= */
+    .pattern-decoration {
+      width: 100%;
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      opacity: 0;
+      animation: fadeDown 0.6s ease 0.95s forwards;
+    }
+
+    .pattern-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--text-dim);
+    }
+
+    .pattern-dot.active {
+      background: var(--turquesa);
+      box-shadow: 0 0 6px var(--turquesa-glow);
+    }
+
+    .pattern-line {
+      width: 20px;
+      height: 1px;
+      background: var(--text-dim);
+      align-self: center;
     }
 
     /* =============================================
@@ -390,7 +498,7 @@
        ============================================= */
     .footer {
       margin-top: auto;
-      padding-top: 32px;
+      padding-top: 24px;
       text-align: center;
       opacity: 0;
       animation: fadeDown 0.6s ease 1s forwards;
@@ -412,7 +520,7 @@
     }
 
     .footer-tagline .dot {
-      color: var(--yellow);
+      color: var(--amarelo);
     }
 
     .footer-year {
@@ -423,7 +531,7 @@
     }
 
     /* =============================================
-       ANIMAÇÕES
+       ANIMACOES
        ============================================= */
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-10px); }
@@ -435,10 +543,17 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* =============================================
+       RESPONSIVO
+       ============================================= */
     @media (max-width: 360px) {
       .brand-name { font-size: 1.8rem; letter-spacing: 2px; }
       .brand-name .id { font-size: 1rem; }
-      .logo-ring { width: 90px; height: 90px; }
+      .symbol-container { width: 120px; height: 120px; }
+      .symbol-core { width: 60px; height: 60px; }
+      .sinal-ring-1 { width: 86px; height: 86px; }
+      .sinal-ring-2 { width: 108px; height: 108px; }
+      .sinal-ring-3 { width: 120px; height: 120px; }
       .link-card { padding: 14px 16px; }
     }
 
@@ -452,33 +567,51 @@
   <div class="container">
 
     <!-- ========================================
-         LOGO E NOME
+         SIMBOLO COM ANIMACAO
          Troque o src da logo
          ======================================== -->
     <div class="header">
-      <div class="logo-container">
-        <div class="logo-ring">
+      <div class="symbol-container">
+
+        <!-- Ponto de Contato orbital 1 -->
+        <div class="contact-point p1"></div>
+        <!-- Ponto de Contato orbital 2 -->
+        <div class="contact-point p2"></div>
+        <!-- Ponto de Contato orbital 3 -->
+        <div class="contact-point p3"></div>
+
+        <!-- Arcos de Sinal -->
+        <div class="sinal-ring-1"></div>
+        <div class="sinal-ring-2"></div>
+        <div class="sinal-ring-3"></div>
+
+        <!-- Simbolo central -->
+        <div class="symbol-core">
           <!-- COLOQUE SUA LOGO AQUI -->
           <img src="logo-ginga.png" alt="Ginga ID">
-          <!-- Se não tiver a logo ainda, use o placeholder abaixo:
-          <div class="logo-placeholder">
-            <span class="logo-placeholder-text">G</span>
-          </div>
+          <!-- Placeholder (descomente se nao tiver logo):
+          <span class="symbol-placeholder">G</span>
           -->
         </div>
+
       </div>
+
+      <!-- Lockup Principal -->
       <h1 class="brand-name">Ginga <span class="id">ID</span></h1>
       <p class="brand-tagline">Sua identidade. Um toque<span class="dot">.</span></p>
     </div>
 
-    <!-- DIVIDER -->
-    <div class="divider">
-      <span class="divider-line"></span>
-      <span class="divider-dot"></span>
-      <span class="divider-line"></span>
+    <!-- Curva Principal — divider SVG -->
+    <div class="curva-divider">
+      <svg viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 10 Q30 0 60 10 Q90 20 120 10" stroke="rgba(18,184,166,0.2)" stroke-width="1" fill="none"/>
+        <circle cx="60" cy="10" r="2.5" fill="#F4C95D"/>
+        <circle cx="0" cy="10" r="1.5" fill="rgba(18,184,166,0.3)"/>
+        <circle cx="120" cy="10" r="1.5" fill="rgba(18,184,166,0.3)"/>
+      </svg>
     </div>
 
-    <!-- DESCRIÇÃO -->
+    <!-- DESCRICAO -->
     <p class="description">
       Soluções em identidade digital com tecnologia NFC e QR Code.
       Conectamos pessoas, marcas e experiências com um simples toque.
@@ -488,7 +621,7 @@
       Tecnologia que conecta. Identidade que aproxima.
     </p>
 
-    <div class="divider-2"></div>
+    <div class="divider-simple"></div>
 
     <!-- LINKS -->
     <div class="links-section">
@@ -537,11 +670,24 @@
 
     </div>
 
+    <!-- Padrao de Conexao -->
+    <div class="pattern-decoration">
+      <span class="pattern-dot"></span>
+      <span class="pattern-line"></span>
+      <span class="pattern-dot active"></span>
+      <span class="pattern-line"></span>
+      <span class="pattern-dot"></span>
+      <span class="pattern-line"></span>
+      <span class="pattern-dot active"></span>
+      <span class="pattern-line"></span>
+      <span class="pattern-dot"></span>
+    </div>
+
     <!-- FOOTER -->
     <div class="footer">
       <div class="footer-line"></div>
       <p class="footer-tagline">Tecnologia que conecta. Identidade que aproxima<span class="dot">.</span></p>
-      <p class="footer-year">&copy; 2026 Ginga ID</p>
+      <p class="footer-year">&copy; 2025 Ginga ID</p>
     </div>
 
   </div>
