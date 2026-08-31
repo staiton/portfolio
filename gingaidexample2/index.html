@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ginga ID — Sua identidade. Um toque.</title>
+<meta name="description" content="Ginga ID — cartões digitais, NFC, QR Code e soluções inteligentes que conectam o mundo físico ao digital.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Ginga ID — Sua identidade. Um toque.">
+<meta property="og:description" content="Ginga ID — cartões digitais, NFC, QR Code e soluções inteligentes que conectam o mundo físico ao digital.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<!-- Fontes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ SÍMBOLOS SVG REUTILIZÁVEIS ============ -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="ginga-mark" viewBox="0 0 48 48">
+      <path d="M10 34 C10 34 14 20 24 20 C34 20 38 14 38 14" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>
+      <circle cx="24" cy="24" r="3.2" fill="currentColor"/>
+      <path d="M30 12 C33 9 37 9 40 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+      <path d="M27 16 C30.5 12.5 35.5 12.5 39 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.55"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="topo">
+  <div class="container header-inner">
+    <a href="#topo" class="brand" aria-label="Ginga ID — início">
+      <svg class="brand-mark" width="34" height="34" aria-hidden="true"><use href="#ginga-mark"/></svg>
+      <span class="brand-name">Ginga ID</span>
+    </a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+      <ul>
+        <li><a href="#topo">Início</a></li>
+        <li><a href="#solucoes">Soluções</a></li>
+        <li><a href="#ginga-card">Ginga Card</a></li>
+        <li><a href="#ginga-pet">Ginga Pet</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <a href="#solucoes" class="btn btn-primary header-cta">Conheça nossas soluções</a>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <h1>Sua identidade. <span class="accent-turquoise">Um toque.</span></h1>
+      <p class="hero-lead">Soluções digitais que transformam um simples toque ou QR Code em uma experiência completa.</p>
+      <p class="hero-sub">Cartões digitais, identificação inteligente e experiências conectadas para pessoas, empresas e pets.</p>
+      <div class="hero-actions">
+        <a href="#solucoes" class="btn btn-primary">Conhecer soluções</a>
+        <a href="#contato" class="btn btn-outline">Falar com a Ginga ID</a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 480 480" class="hero-svg">
+        <!-- ondas de fundo -->
+        <path class="wave wave-1" d="M40 380 C120 340 180 420 260 380 C340 340 400 400 460 370" fill="none" stroke="#12B8A6" stroke-width="2" opacity="0.35"/>
+        <path class="wave wave-2" d="M20 90 C100 60 160 120 240 90 C320 60 380 110 460 80" fill="none" stroke="#082B3A" stroke-width="2" opacity="0.2"/>
+
+        <!-- smartphone -->
+        <g class="float-slow">
+          <rect x="150" y="70" width="150" height="300" rx="26" fill="#082B3A"/>
+          <rect x="162" y="92" width="126" height="240" rx="10" fill="#F6F7F2"/>
+          <rect x="196" y="112" width="58" height="8" rx="4" fill="#12B8A6"/>
+          <rect x="180" y="132" width="90" height="60" rx="10" fill="#E7ECEA"/>
+          <rect x="180" y="202" width="90" height="10" rx="5" fill="#0A3040" opacity="0.15"/>
+          <rect x="180" y="220" width="60" height="10" rx="5" fill="#0A3040" opacity="0.1"/>
+          <circle cx="225" cy="352" r="6" fill="#0A3040" opacity="0.3"/>
+        </g>
+
+        <!-- cartão NFC -->
+        <g class="float-fast">
+          <rect x="238" y="250" width="150" height="94" rx="16" fill="#12B8A6"/>
+          <circle cx="270" cy="278" r="10" fill="#F6F7F2" opacity="0.9"/>
+          <rect x="252" y="304" width="70" height="6" rx="3" fill="#082B3A" opacity="0.55"/>
+          <rect x="252" y="316" width="50" height="6" rx="3" fill="#082B3A" opacity="0.35"/>
+        </g>
+
+        <!-- ondas de sinal saindo do cartão -->
+        <path class="pulse pulse-1" d="M320 246 C332 234 348 234 360 246" fill="none" stroke="#F4C85D" stroke-width="3" stroke-linecap="round"/>
+        <path class="pulse pulse-2" d="M312 234 C330 214 354 214 372 234" fill="none" stroke="#F4C85D" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+        <path class="pulse pulse-3" d="M304 222 C328 194 360 194 384 222" fill="none" stroke="#F4C85D" stroke-width="3" stroke-linecap="round" opacity="0.45"/>
+
+        <!-- pontos conectados -->
+        <circle class="dot-pulse" cx="90" cy="150" r="4" fill="#12B8A6"/>
+        <circle class="dot-pulse" cx="410" cy="200" r="4" fill="#F4C85D" style="animation-delay:.6s"/>
+        <circle class="dot-pulse" cx="80" cy="330" r="4" fill="#082B3A" style="animation-delay:1.1s"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECNOLOGIA QUE APROXIMA ============ -->
+<section class="section philosophy">
+  <div class="container">
+    <div class="philosophy-grid">
+      <div class="philosophy-text">
+        <h2>Tecnologia que conecta. <br>Identidade que aproxima.</h2>
+        <p>Na Ginga ID, transformamos tecnologia em experiências simples. NFC, QR Code e identidade digital trabalham juntos para facilitar conexões entre pessoas, empresas e seus clientes.</p>
+      </div>
+
+      <div class="philosophy-steps" aria-hidden="false">
+        <div class="p-step">
+          <svg class="p-icon" viewBox="0 0 40 40" width="40" height="40" aria-hidden="true">
+            <circle cx="14" cy="26" r="5" fill="#12B8A6"/>
+            <path d="M22 20 C25 16 30 16 33 20" stroke="#12B8A6" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+            <path d="M19 15 C23.5 9.5 30.5 9.5 35 15" stroke="#12B8A6" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.55"/>
+          </svg>
+          <span class="p-label">NFC</span>
+          <strong>Um toque</strong>
+        </div>
+        <div class="p-step">
+          <svg class="p-icon" viewBox="0 0 40 40" width="40" height="40" aria-hidden="true">
+            <rect x="6" y="6" width="11" height="11" rx="2" fill="none" stroke="#082B3A" stroke-width="2.4"/>
+            <rect x="23" y="6" width="11" height="11" rx="2" fill="none" stroke="#082B3A" stroke-width="2.4"/>
+            <rect x="6" y="23" width="11" height="11" rx="2" fill="none" stroke="#082B3A" stroke-width="2.4"/>
+            <rect x="24" y="24" width="4" height="4" fill="#082B3A"/>
+            <rect x="30" y="24" width="4" height="4" fill="#082B3A"/>
+            <rect x="24" y="30" width="4" height="4" fill="#082B3A"/>
+          </svg>
+          <span class="p-label">QR Code</span>
+          <strong>Um escaneamento</strong>
+        </div>
+        <div class="p-step">
+          <svg class="p-icon" viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><use href="#ginga-mark" style="color:#F4C85D"/></svg>
+          <span class="p-label">Ginga ID</span>
+          <strong>Uma experiência</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUTOS ============ -->
+<section class="section" id="solucoes">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Conheça nossas soluções</h2>
+      <p>Tecnologia pensada para diferentes momentos da vida real.</p>
+    </div>
+
+    <!-- GINGA CARD -->
+    <div class="product-card product-card--light" id="ginga-card">
+      <div class="product-copy">
+        <span class="product-tag">Ginga Card</span>
+        <h3>Seu cartão de visita. Sempre conectado.</h3>
+        <p>Um cartão de visita digital que reúne suas principais informações em um único lugar. Compartilhe seu contato, WhatsApp, Instagram, localização, redes sociais e o que mais fizer sentido para você.</p>
+        <ul class="feature-list">
+          <li>WhatsApp</li>
+          <li>Instagram</li>
+          <li>Google Maps</li>
+          <li>QR Code</li>
+          <li>NFC</li>
+          <li>Links personalizados</li>
+        </ul>
+        <p class="product-highlight">"Compartilhe. Aproxime. Conecte."</p>
+        <a href="#contato" class="btn btn-primary">Quero conhecer o Ginga Card</a>
+      </div>
+
+      <div class="product-visual" aria-hidden="true">
+        <svg viewBox="0 0 340 420" class="card-mockup">
+          <rect x="20" y="10" width="300" height="400" rx="34" fill="#082B3A"/>
+          <rect x="34" y="34" width="272" height="352" rx="18" fill="#F6F7F2"/>
+          <circle cx="170" cy="100" r="34" fill="#12B8A6" opacity="0.9"/>
+          <rect x="120" y="146" width="100" height="10" rx="5" fill="#082B3A"/>
+          <rect x="140" y="164" width="60" height="7" rx="3.5" fill="#082B3A" opacity="0.45"/>
+
+          <g>
+            <rect x="60" y="196" width="220" height="34" rx="10" fill="#FFFFFF" stroke="#E4E8E4"/>
+            <circle cx="80" cy="213" r="7" fill="#12B8A6"/>
+            <rect x="98" y="209" width="90" height="8" rx="4" fill="#082B3A" opacity="0.55"/>
+          </g>
+          <g>
+            <rect x="60" y="238" width="220" height="34" rx="10" fill="#FFFFFF" stroke="#E4E8E4"/>
+            <circle cx="80" cy="255" r="7" fill="#F4C85D"/>
+            <rect x="98" y="251" width="76" height="8" rx="4" fill="#082B3A" opacity="0.55"/>
+          </g>
+          <g>
+            <rect x="60" y="280" width="220" height="34" rx="10" fill="#FFFFFF" stroke="#E4E8E4"/>
+            <circle cx="80" cy="297" r="7" fill="#082B3A"/>
+            <rect x="98" y="293" width="100" height="8" rx="4" fill="#082B3A" opacity="0.55"/>
+          </g>
+
+          <rect x="130" y="332" width="80" height="80" rx="10" fill="#FFFFFF" stroke="#E4E8E4"/>
+          <rect x="142" y="344" width="18" height="18" fill="#082B3A"/>
+          <rect x="180" y="344" width="18" height="18" fill="#082B3A"/>
+          <rect x="142" y="382" width="18" height="18" fill="#082B3A"/>
+          <rect x="180" y="382" width="8" height="8" fill="#082B3A"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- GINGA PET -->
+    <div class="product-card product-card--turquoise" id="ginga-pet">
+      <div class="product-visual" aria-hidden="true">
+        <svg viewBox="0 0 340 340" class="tag-mockup">
+          <path d="M170 30 C260 30 305 95 305 170 C305 245 260 310 170 310 C80 310 35 245 35 170 C35 95 80 30 170 30 Z" fill="#F6F7F2" opacity="0.12"/>
+          <circle cx="170" cy="150" r="118" fill="#F6F7F2"/>
+          <circle cx="170" cy="150" r="118" fill="none" stroke="#082B3A" stroke-width="4" opacity="0.15"/>
+          <circle cx="170" cy="70" r="14" fill="none" stroke="#082B3A" stroke-width="6"/>
+          <path d="M158 40 a14 20 0 0 1 24 0" fill="none" stroke="#082B3A" stroke-width="0"/>
+
+          <!-- QR simplificado -->
+          <rect x="112" y="112" width="116" height="116" rx="12" fill="#082B3A"/>
+          <rect x="126" y="126" width="30" height="30" fill="#F6F7F2"/>
+          <rect x="184" y="126" width="30" height="30" fill="#F6F7F2"/>
+          <rect x="126" y="184" width="30" height="30" fill="#F6F7F2"/>
+          <rect x="168" y="168" width="14" height="14" fill="#F6F7F2"/>
+          <rect x="190" y="190" width="14" height="14" fill="#F6F7F2"/>
+          <rect x="168" y="204" width="14" height="6" fill="#F6F7F2"/>
+
+          <!-- ondas NFC -->
+          <path class="pulse pulse-1" d="M234 108 C246 96 262 96 274 108" fill="none" stroke="#F4C85D" stroke-width="4" stroke-linecap="round"/>
+          <path class="pulse pulse-2" d="M226 96 C244 76 268 76 286 96" fill="none" stroke="#F4C85D" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+        </svg>
+      </div>
+
+      <div class="product-copy product-copy--onturquoise">
+        <span class="product-tag">Ginga Pet</span>
+        <h3>Porque eles também merecem uma identidade.</h3>
+        <p>Uma tag inteligente para pets que combina NFC e QR Code com um perfil digital do animal. Em poucos segundos, quem encontrar seu pet pode acessar informações importantes e entrar em contato com o tutor.</p>
+
+        <ul class="feature-list feature-list--profile">
+          <li>Nome do pet</li>
+          <li>Informações do tutor</li>
+          <li>Contato</li>
+          <li>Cidade</li>
+          <li>Informações importantes</li>
+          <li>Observações</li>
+        </ul>
+
+        <p class="product-highlight product-highlight--dark">NFC + QR Code</p>
+        <a href="#contato" class="btn btn-dark">Conhecer o Ginga Pet</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMO FUNCIONA ============ -->
+<section class="section section-alt" id="como-funciona">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Simples para quem usa. Inteligente por trás.</h2>
+    </div>
+
+    <div class="steps-flow">
+      <svg class="steps-line" viewBox="0 0 900 40" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M40 20 C 300 -10, 600 50, 860 20" fill="none" stroke="#12B8A6" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+      </svg>
+
+      <div class="step">
+        <span class="step-index">01</span>
+        <h3>Aproxime ou escaneie</h3>
+        <p>O usuário aproxima o celular da tag NFC ou escaneia o QR Code.</p>
+      </div>
+      <div class="step">
+        <span class="step-index">02</span>
+        <h3>Acesse</h3>
+        <p>Uma página digital personalizada é aberta instantaneamente.</p>
+      </div>
+      <div class="step">
+        <span class="step-index">03</span>
+        <h3>Conecte</h3>
+        <p>O usuário encontra as informações e contatos necessários em poucos segundos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NFC + QR CODE ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Duas formas de chegar ao mesmo lugar.</h2>
+      <p>NFC para quem quer praticidade. QR Code para quem prefere apontar a câmera. Uma experiência pensada para funcionar de forma simples e acessível.</p>
+    </div>
+
+    <div class="dual-columns">
+      <div class="dual-col">
+        <svg class="dual-icon" viewBox="0 0 40 40" width="40" height="40" aria-hidden="true">
+          <circle cx="14" cy="26" r="5" fill="#12B8A6"/>
+          <path d="M22 20 C25 16 30 16 33 20" stroke="#12B8A6" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <path d="M19 15 C23.5 9.5 30.5 9.5 35 15" stroke="#12B8A6" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.55"/>
+        </svg>
+        <h3>NFC — Aproxime</h3>
+        <ul>
+          <li>Rápido</li>
+          <li>Prático</li>
+          <li>Sem digitar URLs</li>
+        </ul>
+      </div>
+
+      <div class="dual-divider" aria-hidden="true">
+        <svg viewBox="0 0 60 220" width="60" height="220">
+          <circle cx="30" cy="20" r="4" fill="#F4C85D"/>
+          <path d="M30 30 C10 60 50 90 30 120 C10 150 50 180 30 200" fill="none" stroke="#082B3A" stroke-width="1.6" opacity="0.25"/>
+          <circle cx="30" cy="200" r="4" fill="#082B3A" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <div class="dual-col">
+        <svg class="dual-icon" viewBox="0 0 40 40" width="40" height="40" aria-hidden="true">
+          <rect x="6" y="6" width="11" height="11" rx="2" fill="none" stroke="#082B3A" stroke-width="2.4"/>
+          <rect x="23" y="6" width="11" height="11" rx="2" fill="none" stroke="#082B3A" stroke-width="2.4"/>
+          <rect x="6" y="23" width="11" height="11" rx="2" fill="none" stroke="#082B3A" stroke-width="2.4"/>
+          <rect x="24" y="24" width="4" height="4" fill="#082B3A"/>
+          <rect x="30" y="24" width="4" height="4" fill="#082B3A"/>
+          <rect x="24" y="30" width="4" height="4" fill="#082B3A"/>
+        </svg>
+        <h3>QR Code — Escaneie</h3>
+        <ul>
+          <li>Universal</li>
+          <li>Fácil de compartilhar</li>
+          <li>Funciona em diferentes dispositivos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENEFÍCIOS ============ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Feito para facilitar.</h2>
+    </div>
+
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <h3>Simples</h3>
+        <p>Tecnologia que qualquer pessoa consegue usar.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Personalizado</h3>
+        <p>Cada perfil pode ter sua própria identidade.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Conectado</h3>
+        <p>Informações importantes reunidas em um só lugar.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Flexível</h3>
+        <p>Uma experiência que pode evoluir junto com você.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARA QUEM É ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Para quem é?</h2>
+    </div>
+
+    <div class="audience-grid">
+      <div class="audience-card">
+        <span class="audience-emoji" aria-hidden="true">👤</span>
+        <h3>Profissionais</h3>
+        <p>Tenha seus contatos sempre à mão.</p>
+      </div>
+      <div class="audience-card">
+        <span class="audience-emoji" aria-hidden="true">🏢</span>
+        <h3>Empresas</h3>
+        <p>Facilite o acesso aos seus canais digitais.</p>
+      </div>
+      <div class="audience-card">
+        <span class="audience-emoji" aria-hidden="true">🐶</span>
+        <h3>Tutores</h3>
+        <p>Uma identificação inteligente para seu pet.</p>
+      </div>
+      <div class="audience-card">
+        <span class="audience-emoji" aria-hidden="true">🛍️</span>
+        <h3>Negócios locais</h3>
+        <p>Transforme pontos físicos em conexões digitais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE ============ -->
+<section class="section section-dark" id="sobre">
+  <div class="container about-inner">
+    <svg class="about-graphic" viewBox="0 0 400 260" aria-hidden="true">
+      <path d="M20 200 C90 140 140 240 210 180 C280 120 330 200 390 150" fill="none" stroke="#12B8A6" stroke-width="2" opacity="0.5"/>
+      <path d="M10 80 C70 40 130 100 190 60 C250 20 310 80 380 40" fill="none" stroke="#F4C85D" stroke-width="2" opacity="0.35"/>
+      <circle cx="90" cy="140" r="4" fill="#12B8A6"/>
+      <circle cx="210" cy="180" r="4" fill="#F4C85D"/>
+      <circle cx="330" cy="200" r="4" fill="#F6F7F2"/>
+    </svg>
+
+    <div class="about-text">
+      <h2>Mais do que tecnologia. Conexão.</h2>
+      <p>A Ginga ID nasceu para aproximar o mundo físico do digital de uma forma simples, acessível e inteligente.</p>
+      <p>Criamos soluções que transformam cartões, tags e objetos físicos em experiências digitais.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIFERENCIAL ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <h2>O que torna a Ginga ID diferente?</h2>
+    </div>
+
+    <div class="diff-grid">
+      <div class="diff-card">
+        <h3>Tecnologia sem complicação</h3>
+        <p>Você não precisa entender NFC ou QR Code. Nós cuidamos da tecnologia.</p>
+      </div>
+      <div class="diff-card">
+        <h3>Experiência personalizada</h3>
+        <p>Cada solução é pensada para a necessidade de quem utiliza.</p>
+      </div>
+      <div class="diff-card">
+        <h3>Do físico ao digital</h3>
+        <p>Transformamos objetos físicos em portas de entrada para experiências digitais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section section-alt" id="faq">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Perguntas frequentes</h2>
+    </div>
+
+    <div class="accordion" id="accordion">
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>O que é NFC?</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <p>NFC (Near Field Communication) é uma tecnologia de comunicação por aproximação. Basta encostar o celular em uma tag ou cartão para abrir uma página digital, sem precisar instalar nenhum aplicativo.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>Preciso de um celular específico?</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <p>O uso do NFC depende da compatibilidade do aparelho. A maioria dos smartphones atuais possui essa tecnologia. Caso o seu não tenha, o QR Code funciona como uma alternativa simples e igualmente eficiente.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>O Ginga Card funciona com QR Code?</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <p>Sim. O Ginga Card funciona tanto por aproximação NFC quanto por leitura de QR Code, garantindo que qualquer pessoa consiga acessar suas informações.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>Posso personalizar meu Ginga Card?</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <p>Sim. As informações e links exibidos na sua página digital podem ser personalizados de acordo com o que fizer mais sentido para você.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>O que é o Ginga Pet?</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <p>É uma tag de identificação inteligente para pets, que combina NFC e QR Code com um perfil digital contendo informações do animal e do tutor.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>O Ginga Pet possui GPS?</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <p>Não. O Ginga Pet atual é uma solução de identificação utilizando NFC + QR Code.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>O Ginga Pet substitui o microchip?</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <p>Não. São tecnologias diferentes e podem ser utilizadas de forma complementar.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>Posso alterar as informações do meu perfil?</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <p>De forma geral, os dados do seu perfil podem ser atualizados. Novas funcionalidades de personalização serão comunicadas conforme forem disponibilizadas.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-final">
+  <svg class="cta-waves" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 220 C 200 180, 400 260, 600 220 C 800 180, 1000 260, 1200 220" fill="none" stroke="#12B8A6" stroke-width="2" opacity="0.3"/>
+    <circle cx="140" cy="90" r="4" fill="#12B8A6" opacity="0.6"/>
+    <circle cx="1040" cy="70" r="4" fill="#F4C85D" opacity="0.7"/>
+    <circle cx="620" cy="60" r="3" fill="#12B8A6" opacity="0.5"/>
+  </svg>
+
+  <div class="container cta-inner">
+    <h2>Sua identidade merece estar sempre conectada.</h2>
+    <p>Descubra uma nova forma de compartilhar, identificar e conectar.</p>
+    <a href="#contato" class="btn btn-yellow">Falar com a Ginga ID</a>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section class="section" id="contato">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Contato</h2>
+      <p>Fale com a gente pelos canais abaixo.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>WhatsApp</h3>
+        <p class="contact-value">Em breve</p>
+      </div>
+      <div class="contact-card">
+        <h3>Instagram</h3>
+        <p class="contact-value">Em breve</p>
+      </div>
+      <div class="contact-card">
+        <h3>E-mail</h3>
+        <p class="contact-value">Em breve</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <svg class="brand-mark" width="30" height="30" aria-hidden="true"><use href="#ginga-mark"/></svg>
+      <div>
+        <span class="brand-name">Ginga ID</span>
+        <p>Sua identidade. Um toque.</p>
+      </div>
+    </div>
+
+    <nav class="footer-nav" aria-label="Links do rodapé">
+      <a href="#topo">Início</a>
+      <a href="#solucoes">Soluções</a>
+      <a href="#ginga-card">Ginga Card</a>
+      <a href="#ginga-pet">Ginga Pet</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+  <div class="container">
+    <p class="footer-copy">© 2026 Ginga ID. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
