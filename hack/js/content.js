@@ -28,6 +28,7 @@ window.CONTENT = {
     boot: [
       "[ OK ] carregando interfaces de rede",
       "[ OK ] regras de firewall aplicadas",
+      "[ OK ] serviços de segurança inicializados",
       "[ OK ] monitoramento ativo",
       "[ OK ] portfólio pronto",
     ],
@@ -270,6 +271,7 @@ window.CONTENT = {
     boot: [
       "[ OK ] bringing up network interfaces",
       "[ OK ] firewall rules applied",
+      "[ OK ] security services started",
       "[ OK ] monitoring active",
       "[ OK ] portfolio ready",
     ],

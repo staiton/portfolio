@@ -182,7 +182,7 @@
       var li = document.createElement("li");
       li.innerHTML = esc(lines[i]).replace("[ OK ]", "[ <b>OK</b> ]");
       list.appendChild(li); i++;
-      setTimeout(next, 450);
+      setTimeout(next, 340);
     })();
   }
 
