@@ -6,421 +6,228 @@
   <title>Gabriel França | Analista de Redes & Segurança</title>
   <meta name="description" content="Analista de Redes e Segurança da Informação em Natal, RN. Firewalls NGFW, SD-WAN, resposta a incidentes e ambientes MSSP." />
   <meta name="author" content="Gabriel França" />
-  <meta name="theme-color" content="#233fe1" />
+  <meta name="theme-color" content="#0a0f0d" />
   <link rel="canonical" href="https://gabrielfranca.com.br/" />
   <meta property="og:title" content="Gabriel França | Analista de Redes & Segurança" />
   <meta property="og:description" content="Firewalls NGFW, SD-WAN, resposta a incidentes e ambientes MSSP." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gabrielfranca.com.br/" />
   <meta property="og:locale" content="pt_BR" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=4" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script>
     (function () {
+      var r = document.documentElement;
       try {
         var t = localStorage.getItem("gf-theme");
-        document.documentElement.dataset.theme = t === "dark" || t === "light" ? t : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        r.dataset.theme = t === "dark" || t === "light" ? t : "dark";
         var m = localStorage.getItem("gf-motion");
-        document.documentElement.dataset.motion = m === "paused" || m === "on" ? m : (matchMedia("(prefers-reduced-motion: reduce)").matches ? "paused" : "on");
-        var l = localStorage.getItem("gf-lang");
-        if (l === "en") document.documentElement.lang = "en";
-      } catch (e) {
-        document.documentElement.dataset.theme = "light";
-        document.documentElement.dataset.motion = "on";
-      }
+        r.dataset.motion = m === "paused" || m === "on" ? m : (matchMedia("(prefers-reduced-motion: reduce)").matches ? "paused" : "on");
+        if (localStorage.getItem("gf-lang") === "en") r.lang = "en";
+      } catch (e) { r.dataset.theme = "dark"; r.dataset.motion = "on"; }
     })();
   </script>
-  <link rel="stylesheet" href="css/styles.css?v=2" />
+  <link rel="stylesheet" href="css/styles.css?v=4" />
 </head>
 <body>
   <a class="skip-link" href="#conteudo" data-i18n="ui.skip">Pular para o conteúdo</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
-  <!-- Abertura -->
-  <div class="page-intro" aria-hidden="true" hidden>
-    <div class="intro-panel">
-      <div class="intro-monogram">gf.</div>
-      <div class="intro-name" data-i18n="intro">Gabriel França · Redes & Segurança</div>
-      <div class="intro-line"></div>
+  <!-- Boot -->
+  <div class="boot" aria-hidden="true" hidden>
+    <div class="boot-inner">
+      <p class="boot-host">gf@natal:~$ <span>./start-portfolio.sh</span></p>
+      <ul class="boot-lines" id="boot-lines"></ul>
     </div>
   </div>
 
-  <div class="section-travel" aria-hidden="true"><span></span></div>
-
-  <!-- Cabeçalho -->
-  <header class="site-header">
-    <div class="wrap nav-shell">
-      <a class="wordmark" href="#topo" aria-label="Gabriel França, início">
-        <span class="brand-mark">gf.</span>
-        <span>gabriel<span class="wordmark-suffix">frança</span><span class="wordmark-dot">.</span></span>
+  <!-- Navegação -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="logo" href="#topo" aria-label="Gabriel França, início">
+        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2l12 5v8c0 8-5.4 13-12 15C9.4 28 4 23 4 15V7z"/><path class="logo-g" d="M20 12h-6.5v8H20v-3.5h-3"/></svg>
+        <span class="logo-text">gabriel<b>frança</b></span>
       </a>
-
-      <nav class="nav-links" id="nav-links" aria-label="Principal">
-        <a href="#experiencia" data-section="experiencia" data-i18n="ui.nav.exp">Experiência</a>
-        <a href="#projetos" data-section="projetos" data-i18n="ui.nav.projects">Projetos</a>
-        <a href="#competencias" data-section="competencias" data-i18n="ui.nav.skills">Competências</a>
+      <nav class="nav" id="nav" aria-label="Principal">
+        <a href="#carreira" data-section="carreira" data-i18n="ui.nav.exp">Carreira</a>
+        <a href="#homelab" data-section="homelab" data-i18n="ui.nav.projects">Homelab</a>
+        <a href="#stack" data-section="stack" data-i18n="ui.nav.skills">Stack</a>
         <a href="#sobre" data-section="sobre" data-i18n="ui.nav.about">Sobre</a>
-        <a href="#contato" class="nav-contact" data-section="contato"><span data-i18n="ui.nav.contact">Contato</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7"/></svg></a>
+        <a href="#contato" data-section="contato" data-i18n="ui.nav.contact">Contato</a>
       </nav>
-
-      <div class="nav-controls">
-        <div class="settings">
-          <button class="settings-trigger" type="button" aria-expanded="false" aria-controls="settings-panel">
-            <svg class="i gear" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2h4l.6 2.7 2 .9 2.4-1.5 2.8 2.8-1.5 2.4.9 2 2.7.6v4l-2.7.6-.9 2 1.5 2.4-2.8 2.8-2.4-1.5-2 .9L14 22h-4l-.6-2.7-2-.9-2.4 1.5-2.8-2.8 1.5-2.4-.9-2L2 14v-4l2.7-.6.9-2-1.5-2.4L6.9 2.2l2.4 1.5 2-.9z" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="3.2" fill="var(--btn-bg)" stroke="none"/></svg>
-            <span data-i18n="ui.settings">Ajustes</span>
-            <span class="settings-indicator" aria-hidden="true">+</span>
-          </button>
-          <div class="settings-panel" id="settings-panel" role="dialog" aria-labelledby="settings-title" hidden>
-            <div class="settings-title">
-              <h2 id="settings-title"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2h4l.6 2.7 2 .9 2.4-1.5 2.8 2.8-1.5 2.4.9 2 2.7.6v4l-2.7.6-.9 2 1.5 2.4-2.8 2.8-2.4-1.5-2 .9L14 22h-4l-.6-2.7-2-.9-2.4 1.5-2.8-2.8 1.5-2.4-.9-2L2 14v-4l2.7-.6.9-2-1.5-2.4L6.9 2.2l2.4 1.5 2-.9z" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="3.2" fill="var(--blue)" stroke="none"/></svg><span data-i18n="ui.settings">Ajustes</span></h2>
-              <button class="settings-close" type="button" data-i18n-aria="ui.close" aria-label="Fechar"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-            </div>
-            <p class="settings-caption" data-i18n="ui.settingsCaption">Deixe a página do seu jeito.</p>
-            <div class="setting-row language-setting">
-              <span class="setting-label"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n="ui.language">Idioma</span></span>
-              <div class="language-options" role="group">
-                <button type="button" data-lang="pt" aria-pressed="true">PT-BR</button>
-                <button type="button" data-lang="en" aria-pressed="false">EN</button>
-              </div>
-            </div>
-            <div class="setting-row">
-              <span class="setting-label"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span data-i18n="ui.dark">Tema escuro</span></span>
-              <button class="switch" type="button" role="switch" data-setting="theme" aria-checked="false"><span class="switch-track"><span class="switch-label">OFF</span><span class="switch-knob"></span></span></button>
-            </div>
-            <div class="setting-row">
-              <span class="setting-label"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z" fill="currentColor" stroke="none"/></svg><span data-i18n="ui.motion">Animações</span></span>
-              <button class="switch" type="button" role="switch" data-setting="motion" aria-checked="true"><span class="switch-track"><span class="switch-label">ON</span><span class="switch-knob"></span></span></button>
-            </div>
-            <div class="settings-actions">
-              <button type="button" class="utility-button" data-action="replay"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v6h6M4.5 10A8 8 0 1 1 6 17"/></svg><span data-i18n="ui.replay">Rever abertura</span></button>
-            </div>
-          </div>
-        </div>
-        <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links"><span class="menu-lines" aria-hidden="true"><span></span><span></span><span></span></span><span class="sr-only" data-i18n="ui.menu">Menu</span></button>
+      <div class="tools">
+        <button type="button" class="tool lang-toggle" data-i18n-aria="ui.lang" aria-label="Mudar idioma"><span data-l="pt">PT</span><span data-l="en">EN</span></button>
+        <button type="button" class="tool icon-tool" id="motion-toggle" data-i18n-aria="ui.motion" aria-label="Pausar ou ativar animações" aria-pressed="false">
+          <svg class="i i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>
+          <svg class="i i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg>
+        </button>
+        <button type="button" class="tool icon-tool" id="theme-toggle" data-i18n-aria="ui.theme" aria-label="Alternar tema">
+          <svg class="i i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="i i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+        </button>
+        <button type="button" class="tool icon-tool menu-toggle" aria-expanded="false" aria-controls="nav"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="sr-only" data-i18n="ui.menu">Menu</span></button>
       </div>
     </div>
   </header>
 
   <main id="conteudo">
     <!-- HERO -->
-    <section class="hero section" id="topo" data-mark="yellow">
-      <div class="wrap hero-layout">
+    <section class="hero" id="topo">
+      <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="hero-label" data-i18n="hero.label">Gabriel França · Analista de Redes & Segurança</p>
-          <h1 class="hero-title">
-            <span class="title-lead" data-i18n="hero.lead">Protegendo</span>
-            <span class="title-pixel hero-pixel" data-i18n="hero.pixel">infraestruturas.</span>
-          </h1>
-          <p class="hero-intro" data-i18n="hero.text"></p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#experiencia"><span data-i18n="hero.primary">Minha trajetória</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7"/></svg></a>
-            <a class="button button-secondary" href="#contato"><span data-i18n="hero.secondary">Entrar em contato</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></a>
+          <p class="status-pill"><span class="led"></span><span data-i18n="hero.status">Disponível para novas oportunidades</span></p>
+          <h1 class="hero-title" data-i18n-mark="hero.title">Protegendo infraestruturas.</h1>
+          <p class="hero-text" data-i18n="hero.text"></p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#carreira"><span data-i18n="hero.primary">Ver carreira</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn-ghost" href="#contato"><span data-i18n="hero.secondary">Abrir um chamado</span></a>
           </div>
         </div>
-
-        <div class="hero-art">
-          <div class="hero-editor">
-            <div class="art-titlebar"><span data-i18n="hero.artTitle">Do incidente à solução.</span><span class="art-icon" aria-hidden="true">{ }</span></div>
-            <div class="artwork">
-              <svg viewBox="0 0 320 250" role="img" aria-label="Ilustração: janela com escudo de segurança e cursor">
-                <defs>
-                  <pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="#4a63ff"/></pattern>
-                </defs>
-                <rect width="320" height="250" fill="var(--blue)"/>
-                <rect width="320" height="250" fill="url(#dots)"/>
-                <g class="art-window">
-                  <rect x="64" y="58" width="150" height="128" fill="#202019"/>
-                  <rect x="58" y="52" width="150" height="128" fill="#fffaf0" stroke="#202019" stroke-width="3"/>
-                  <rect x="58" y="52" width="150" height="20" fill="var(--orange)" stroke="#202019" stroke-width="3"/>
-                  <path d="M68 62h6M78 62h6M88 62h6M184 62h14" stroke="#202019" stroke-width="3"/>
-                  <g class="shield">
-                    <path d="M133 84l28 10v22c0 18-12 28-28 34-16-6-28-16-28-34V94z" fill="var(--yellow)" stroke="#202019" stroke-width="3"/>
-                    <path class="shield-check" d="M120 117l9 9 18-20" fill="none" stroke="#202019" stroke-width="5" stroke-linecap="square"/>
-                  </g>
-                  <path d="M76 162h46M76 170h30" stroke="#202019" stroke-width="3"/>
-                  <path class="art-caret" d="M128 162h8" stroke="var(--blue)" stroke-width="3"/>
-                </g>
-                <g class="art-spark"><path d="M246 40l7 13 14-4-6 13 12 8-14 3 1 14-11-9-10 10-1-14-14-3 12-8-6-13 14 4z" fill="var(--yellow)" stroke="#202019" stroke-width="3"/><rect x="250" y="56" width="6" height="6" fill="#202019"/></g>
-                <g class="art-pointer"><path d="M222 150l40 30-18 3 11 22-9 4-11-22-13 12z" fill="var(--yellow)" stroke="#202019" stroke-width="3"/></g>
-                <g class="route-dashes"><rect x="62" y="216" width="22" height="6" fill="var(--orange)"/><rect x="90" y="216" width="6" height="6" fill="var(--orange)"/><path d="M106 219h112" stroke="#b4c3ff" stroke-width="2" stroke-dasharray="4 5"/></g>
-              </svg>
-            </div>
+        <div class="console" aria-label="Terminal ilustrativo">
+          <div class="console-bar">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="console-title">ssh gabriel@natal</span>
+            <img class="console-avatar" src="assets/foto-pixel.webp" alt="" width="24" height="24" />
           </div>
-          <a class="portrait-action hero-card" href="#sobre">
-            <span class="hero-avatar" aria-hidden="true">
-              <img src="assets/foto-pixel.webp" alt="" width="56" height="56" />
-            </span>
-            <span class="hero-card-copy"><small data-i18n="hero.cardLabel">Gabriel França</small><strong data-i18n="hero.cardTitle">Um pouco sobre mim</strong></span>
-            <span class="square-arrow" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M12 4v15M5 12l7 7 7-7"/></svg></span>
-          </a>
+          <div class="console-body" id="console-body"></div>
         </div>
       </div>
-      <div class="wrap hero-bottom">
-        <p class="hero-role" data-i18n="hero.bottomRole">Redes · Segurança · Cybersec</p>
-        <p class="hero-terminal" aria-hidden="true"><span data-i18n="hero.terminal">&gt; ready to secure your network</span><span class="caret">_</span></p>
-        <a class="scroll-link" href="#experiencia"><span data-i18n="hero.explore">Explore a página</span><span class="scroll-arrow" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M12 4v15M5 12l7 7 7-7"/></svg></span></a>
+      <div class="container">
+        <dl class="stats" id="hero-stats"></dl>
       </div>
     </section>
 
-    <!-- EXPERIÊNCIA -->
-    <section class="section experience-section" id="experiencia" data-mark="yellow">
-      <div class="wrap">
-        <div class="chapter-opening">
-          <div class="section-heading will-reveal">
-            <p class="eyebrow" data-i18n="exp.eyebrow">Experiência profissional</p>
-            <h2><span class="title-lead" data-i18n="exp.lead">Trajetória em</span> <span class="title-pixel" data-i18n="exp.pixel">CAMPO</span></h2>
-            <p class="section-intro" data-i18n="exp.intro"></p>
-          </div>
-          <div class="heading-art journey-art will-reveal" aria-hidden="true">
-            <svg viewBox="0 0 360 250">
-              <defs><pattern id="grid1" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0v20" fill="none" stroke="#c9cdee" stroke-width="1"/></pattern></defs>
-              <rect x="4" y="4" width="352" height="242" fill="#e9e8fb" stroke="#202019" stroke-width="3"/>
-              <rect x="4" y="4" width="352" height="242" fill="url(#grid1)"/>
-              <path d="M24 30h14M31 23v14" stroke="#202019" stroke-width="3"/>
-              <path class="route-path" d="M66 176h56v-64h60v52h56V84h50" fill="none" stroke="#202019" stroke-width="9"/>
-              <path class="route-path route-flow" d="M66 176h56v-64h60v52h56V84h50" fill="none" stroke="var(--blue)" stroke-width="5" stroke-dasharray="10 8"/>
-              <g class="journey-note-a"><rect x="30" y="120" width="76" height="52" fill="#202019"/><rect x="26" y="116" width="76" height="52" fill="var(--yellow)" stroke="#202019" stroke-width="3"/><path d="M36 132h40M36 142h28" stroke="#202019" stroke-width="3"/><rect x="84" y="126" width="9" height="9" fill="var(--orange)" stroke="#202019" stroke-width="2"/></g>
-              <g class="journey-note-b"><rect x="202" y="56" width="76" height="52" fill="#202019"/><rect x="198" y="52" width="76" height="52" fill="var(--orange)" stroke="#202019" stroke-width="3"/><path d="M208 66h44M208 76h30M208 86h38" stroke="#202019" stroke-width="3"/></g>
-              <g><rect x="252" y="160" width="34" height="34" fill="#fffaf0" stroke="#202019" stroke-width="3"/><path d="M259 177l6 6 13-14" fill="none" stroke="var(--blue)" stroke-width="4"/></g>
-              <g><path d="M300 84V40" stroke="#202019" stroke-width="3"/><path d="M300 40h22l-6 7 6 7h-22z" fill="var(--yellow)" stroke="#202019" stroke-width="3"/></g>
-              <rect class="journey-marker" x="60" y="170" width="12" height="12" fill="var(--orange)" stroke="#202019" stroke-width="2"/>
-            </svg>
-          </div>
-        </div>
-        <ol class="experience-list" id="experience-list"></ol>
+    <!-- CARREIRA -->
+    <section class="section" id="carreira">
+      <div class="container">
+        <header class="sec-head reveal">
+          <p class="eyebrow" data-i18n="exp.eyebrow">01 · carreira</p>
+          <h2 data-i18n-mark="exp.title">Trajetória em campo</h2>
+          <p class="sec-intro" data-i18n="exp.intro"></p>
+        </header>
+        <ol class="timeline" id="timeline"></ol>
       </div>
     </section>
 
-    <!-- PROJETOS -->
-    <section class="section projects-section" id="projetos" data-mark="orange">
-      <div class="wrap">
-        <div class="chapter-opening">
-          <div class="section-heading will-reveal">
-            <p class="eyebrow" data-i18n="projects.eyebrow">Projetos em destaque</p>
-            <h2><span class="title-lead" data-i18n="projects.lead">Meu laboratório de</span> <span class="title-pixel" data-i18n="projects.pixel">DEFESA</span></h2>
-            <p class="section-intro" data-i18n="projects.intro"></p>
-          </div>
-          <div class="heading-art lab-art will-reveal" aria-hidden="true">
-            <div class="lab-titlebar"><span>LAB / gf.</span><span>− □ ×</span></div>
-            <svg viewBox="0 0 300 200" class="lab-composition">
-              <rect width="300" height="200" fill="var(--yellow)"/>
-              <circle cx="150" cy="100" r="66" fill="#d9d2f5"/>
-              <path class="lab-sparks" d="M58 52h12M64 46v12M236 140h12M242 134v12" stroke="#202019" stroke-width="3"/>
-              <g class="lab-star"><path d="M232 34l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z" fill="none" stroke="#202019" stroke-width="3"/></g>
-              <g class="lab-rack">
-                <rect x="108" y="44" width="84" height="122" fill="#202019"/>
-                <rect x="104" y="40" width="84" height="122" fill="#fffaf0" stroke="#202019" stroke-width="3"/>
-                <g><rect x="114" y="52" width="64" height="22" fill="var(--blue)" stroke="#202019" stroke-width="3"/><rect class="led l1" x="120" y="60" width="6" height="6" fill="#9be38f"/><path d="M134 63h36" stroke="#b4c3ff" stroke-width="3"/></g>
-                <g><rect x="114" y="80" width="64" height="22" fill="var(--blue)" stroke="#202019" stroke-width="3"/><rect class="led l2" x="120" y="88" width="6" height="6" fill="#9be38f"/><path d="M134 91h36" stroke="#b4c3ff" stroke-width="3"/></g>
-                <g><rect x="114" y="108" width="64" height="22" fill="var(--blue)" stroke="#202019" stroke-width="3"/><rect class="led l3" x="120" y="116" width="6" height="6" fill="var(--orange)"/><path d="M134 119h36" stroke="#b4c3ff" stroke-width="3"/></g>
-                <path d="M118 146h56" stroke="#202019" stroke-width="3" stroke-dasharray="4 4"/>
-              </g>
-              <path class="lab-ground" d="M60 170h180" stroke="#202019" stroke-width="3"/>
-            </svg>
-            <p class="lab-caption" data-i18n="projects.labCaption">Testar faz parte.</p>
-          </div>
-        </div>
-        <div class="projects-list" id="projects-list"></div>
+    <!-- HOMELAB -->
+    <section class="section section-alt" id="homelab">
+      <div class="container">
+        <header class="sec-head reveal">
+          <p class="eyebrow" data-i18n="projects.eyebrow">02 · homelab</p>
+          <h2 data-i18n-mark="projects.title">Projetos que rodam em casa</h2>
+          <p class="sec-intro" data-i18n="projects.intro"></p>
+        </header>
+        <div class="projects" id="projects"></div>
       </div>
     </section>
 
-    <!-- COMPETÊNCIAS -->
-    <section class="section skills-section" id="competencias" data-mark="blue">
-      <div class="wrap">
-        <div class="chapter-opening">
-          <div class="section-heading will-reveal">
-            <p class="eyebrow" data-i18n="skills.eyebrow">Competências</p>
-            <h2><span class="title-lead" data-i18n="skills.lead">As camadas da</span> <span class="title-pixel" data-i18n="skills.pixel">DEFESA</span></h2>
-            <p class="section-intro" data-i18n="skills.intro"></p>
-          </div>
-          <div class="skills-machine will-reveal">
-            <div class="machine-titlebar"><span><span aria-hidden="true">{ }</span> <span data-i18n="skills.machineTitle">Explore as camadas</span></span><span class="machine-count">01—04</span></div>
-            <div class="machine-map" id="machine-map">
-              <svg class="machine-wires" viewBox="0 0 400 220" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M200 110H110V60M200 110h90V60M200 110H110v50M200 110h90v50" fill="none" stroke="var(--black)" stroke-width="3"/>
-                <path class="wire-signal" d="M200 110H110V60" fill="none" stroke="var(--blue)" stroke-width="3" stroke-dasharray="6 6"/>
-              </svg>
-              <span class="machine-hub" aria-hidden="true">gf</span>
-            </div>
-            <p class="machine-readout" aria-live="polite"><span aria-hidden="true">↳</span> <span id="machine-readout"></span></p>
-          </div>
+    <!-- STACK -->
+    <section class="section" id="stack">
+      <div class="container">
+        <header class="sec-head reveal">
+          <p class="eyebrow" data-i18n="skills.eyebrow">03 · stack</p>
+          <h2 data-i18n-mark="skills.title">Uma pilha em quatro camadas</h2>
+          <p class="sec-intro" data-i18n="skills.intro"></p>
+        </header>
+        <div class="stack reveal">
+          <div class="layers" role="tablist" id="layers"></div>
+          <div class="layer-panel" role="tabpanel" id="layer-panel"></div>
         </div>
-        <div class="skills-grid" id="skills-grid"></div>
-
-        <div class="work-method will-reveal" id="work-method">
-          <div class="method-heading">
-            <h3 data-i18n="skills.method.title">Como trabalho</h3>
-            <div class="method-sequence" aria-hidden="true"></div>
-          </div>
-          <div class="method-tabs" role="tablist" aria-label="Como trabalho"></div>
-          <div class="method-panel" role="tabpanel" id="method-panel"></div>
-          <p class="method-note"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg><span data-i18n="skills.method.footnote"></span></p>
+        <div class="flow reveal">
+          <h3 data-i18n-mark="skills.flowTitle">Do alerta ao relatório</h3>
+          <ol class="flow-steps" id="flow-steps"></ol>
         </div>
       </div>
     </section>
 
     <!-- SOBRE -->
-    <section class="section about-section" id="sobre" data-mark="lilac">
-      <div class="wrap">
-        <div class="about-layout">
-          <div class="about-portrait will-reveal">
-            <div class="portrait-device">
-              <div class="portrait-case-marks"><span>GABRIEL FRANÇA</span><span aria-hidden="true">III</span></div>
-              <div class="portrait-bezel">
-                <div class="portrait-screen" data-power="on">
-                  <canvas id="portrait-canvas" width="480" height="420" aria-label="Ilustração pixelada" role="img"></canvas>
-                  <span class="portrait-display-label" id="portrait-mode">Original</span>
-                </div>
-                <div class="portrait-bezel-foot">
-                  <span class="portrait-power"><span class="power-dot"></span><span data-i18n="about.device.power">ON</span></span>
-                  <span class="portrait-color-mark">gf. <b>C</b><b>O</b><b>L</b><b>O</b><b>R</b></span>
-                </div>
-              </div>
-              <div class="portrait-controls">
-                <div class="portrait-dpad" role="group" aria-label="D-pad">
-                  <button type="button" class="dpad-up" data-dpad="up" aria-label="Cima"></button>
-                  <button type="button" class="dpad-left" data-dpad="left" aria-label="Esquerda"></button>
-                  <span class="dpad-center"></span>
-                  <button type="button" class="dpad-right" data-dpad="right" aria-label="Direita"></button>
-                  <button type="button" class="dpad-down" data-dpad="down" aria-label="Baixo"></button>
-                </div>
-                <div class="portrait-action-pair">
-                  <div class="portrait-b-unit"><button type="button" class="portrait-b" data-device="b">B</button><span data-i18n="about.device.b">Voltar</span></div>
-                  <div class="portrait-action-unit"><button type="button" class="portrait-a" data-device="a">A</button><span data-i18n="about.device.a">Transformar</span></div>
-                </div>
-              </div>
-              <div class="portrait-device-foot">
-                <span data-i18n="about.device.edition">Edição de bolso</span>
-                <button type="button" class="power-switch" data-device="power" aria-pressed="true" aria-label="Power"></button>
-                <span class="portrait-speaker" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-              </div>
+    <section class="section section-alt" id="sobre">
+      <div class="container about-grid">
+        <div class="badge-col reveal">
+          <div class="badge" id="badge">
+            <span class="badge-clip" aria-hidden="true"></span>
+            <div class="badge-top"><span class="led"></span><span data-i18n="about.badge.top">acesso autorizado</span></div>
+            <div class="badge-photo">
+              <canvas id="badge-canvas" width="400" height="460" role="img" aria-label="Foto de Gabriel França"></canvas>
+              <span class="badge-mode" id="badge-mode">foto</span>
             </div>
-            <p class="portrait-location"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span data-i18n="about.location">Natal, RN · Brasil</span></p>
+            <div class="badge-info">
+              <strong>Gabriel França</strong>
+              <span data-i18n="about.badge.role">Redes & Segurança</span>
+              <dl class="badge-meta">
+                <div><dt data-i18n="about.badge.id">ID</dt><dd>GF-5592</dd></div>
+                <div><dt data-i18n="about.badge.level">Nível</dt><dd>N2</dd></div>
+              </dl>
+              <svg class="barcode" viewBox="0 0 120 22" preserveAspectRatio="none" aria-hidden="true" id="barcode"></svg>
+            </div>
           </div>
-
-          <div class="about-copy">
-            <div class="section-heading will-reveal">
-              <p class="eyebrow" data-i18n="about.eyebrow">Sobre mim</p>
-              <h2><span class="title-lead" data-i18n="about.lead">Por trás do</span> <span class="title-pixel" data-i18n="about.pixel">FIREWALL</span></h2>
+          <button type="button" class="btn btn-primary scan-btn" id="scan-btn"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8V4h4M17 4h4v4M21 16v4h-4M7 20H3v-4M3 12h18"/></svg><span id="scan-label">Escanear crachá</span></button>
+        </div>
+        <div class="about-copy">
+          <header class="sec-head reveal">
+            <p class="eyebrow" data-i18n="about.eyebrow">04 · sobre</p>
+            <h2 data-i18n-mark="about.title">Prazer, Gabriel.</h2>
+          </header>
+          <div class="about-text reveal">
+            <p data-i18n="about.p1"></p>
+            <p data-i18n="about.p2"></p>
+          </div>
+          <div class="facts reveal">
+            <div class="fact-block">
+              <h3 data-i18n="about.education">Formação</h3>
+              <ul class="degrees" id="degrees"></ul>
             </div>
-            <div class="about-bio will-reveal">
-              <p class="lead-p" data-i18n="about.p1"></p>
-              <p data-i18n="about.p2"></p>
-              <a class="text-link" href="https://linkedin.com/in/gabriel-franca5592" target="_blank" rel="noopener">LinkedIn <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg></a>
+            <div class="fact-block">
+              <h3 data-i18n="about.langsTitle">Idiomas</h3>
+              <ul class="langs" id="langs"></ul>
             </div>
-            <dl class="about-stats will-reveal" id="about-stats"></dl>
           </div>
         </div>
-
-        <div class="credentials">
-          <p class="eyebrow" data-i18n="about.education">Formação</p>
-          <div class="credentials-grid">
-            <article class="credential-card degree c-orange will-reveal">
-              <header class="credential-heading"><span data-i18n="about.post.label"></span><span class="credential-icon" aria-hidden="true">{ }</span></header>
-              <div class="credential-body">
-                <h3 data-i18n="about.post.title"></h3>
-                <p data-i18n="about.post.org"></p>
-                <p class="credential-date" data-i18n="about.post.date"></p>
-              </div>
-            </article>
-            <article class="credential-card degree c-lilac will-reveal">
-              <header class="credential-heading"><span data-i18n="about.grad.label"></span><span class="credential-icon" aria-hidden="true">{ }</span></header>
-              <div class="credential-body">
-                <h3 data-i18n="about.grad.title"></h3>
-                <p data-i18n="about.grad.org"></p>
-                <p class="credential-date" data-i18n="about.grad.date"></p>
-              </div>
-            </article>
-            <article class="credential-card certifications c-yellow will-reveal">
-              <header class="credential-heading"><span data-i18n="about.certs.label"></span><span class="credential-icon" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="currentColor"/><path d="M8 12l3 3 5-6" stroke="var(--yellow)"/></svg></span></header>
-              <div class="credential-body">
-                <ul class="cert-list" id="cert-list"></ul>
-                <button type="button" class="cert-toggle" id="cert-toggle" aria-expanded="false"></button>
-                <p class="credential-date" data-i18n="about.certs.note"></p>
-              </div>
-            </article>
-            <article class="credential-card languages c-green will-reveal">
-              <header class="credential-heading"><span data-i18n="about.langs.label"></span><span class="credential-icon" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span></header>
-              <div class="credential-body"><ul class="language-list" id="language-list"></ul></div>
-            </article>
-          </div>
+      </div>
+      <div class="container">
+        <div class="certs reveal">
+          <h3><span data-i18n="about.certsTitle">Certificados</span> <span class="count" id="cert-count"></span></h3>
+          <ul class="cert-grid" id="cert-grid"></ul>
         </div>
       </div>
     </section>
 
     <!-- CONTATO -->
-    <section class="section contact-section" id="contato" data-mark="yellow">
-      <div class="wrap">
-        <div class="contact-layout">
-          <div class="contact-copy">
-            <div class="section-heading will-reveal">
-              <p class="eyebrow" data-i18n="contact.eyebrow">Contato</p>
-              <h2><span class="title-lead" data-i18n="contact.lead">Vamos</span> <span class="title-pixel" data-i18n="contact.pixel">CONVERSAR?</span></h2>
-              <p class="section-intro" data-i18n="contact.intro"></p>
-            </div>
-            <div class="contact-art will-reveal" aria-hidden="true">
-              <svg viewBox="0 0 360 240">
-                <path class="mail-flight-path" d="M150 150C190 70 250 60 290 70" fill="none" stroke="#202019" stroke-width="2" stroke-dasharray="5 6"/>
-                <g class="mail-envelope">
-                  <path d="M44 90l120-22 26 120-120 22z" fill="#d9d2f5" stroke="#202019" stroke-width="3"/>
-                  <g class="mail-letter"><rect x="80" y="44" width="78" height="96" fill="#fffaf0" stroke="#202019" stroke-width="3" transform="rotate(-10 119 92)"/><path d="M92 70l50-9M94 82l40-7M96 94l46-8" stroke="var(--blue)" stroke-width="4" transform="rotate(0)"/></g>
-                  <path d="M58 112l112-20 20 96-120 22z" fill="var(--blue)" stroke="#202019" stroke-width="3"/>
-                  <path d="M58 112l66 52 46-72" fill="none" stroke="#202019" stroke-width="3"/>
-                </g>
-                <g class="mail-plane"><path d="M262 58l52-22-18 50-12-14-14 10 2-16z" fill="#fffaf0" stroke="#202019" stroke-width="3"/><path d="M270 70l44-34" stroke="#202019" stroke-width="2"/><path d="M262 58l52-22-22 38" fill="var(--orange)" stroke="#202019" stroke-width="3"/></g>
-                <g class="mail-stamp"><rect x="214" y="160" width="46" height="36" fill="var(--blue)" stroke="#202019" stroke-width="3"/><path d="M222 170h6M232 170h6M242 170h6" stroke="#fffaf0" stroke-width="4"/><path d="M226 196l-6 10 14-10" fill="var(--blue)" stroke="#202019" stroke-width="3"/></g>
-              </svg>
-            </div>
+    <section class="section" id="contato">
+      <div class="container contact-wrap">
+        <header class="sec-head center reveal">
+          <p class="eyebrow" data-i18n="contact.eyebrow">05 · contato</p>
+          <h2 data-i18n-mark="contact.title">Abra um chamado</h2>
+          <p class="sec-intro" data-i18n="contact.intro"></p>
+        </header>
+        <div class="ticket reveal">
+          <div class="ticket-head">
+            <span class="mono" data-i18n="contact.ticket">chamado #0001</span>
+            <span class="prio"><span class="led led-amber"></span><span data-i18n="contact.priority">prioridade: alta</span></span>
           </div>
-
-          <div class="contact-form-wrap will-reveal">
-            <form class="contact-form" id="contact-form" novalidate>
-              <div class="form-titlebar"><h3 data-i18n="contact.formTitle">Escreva por aqui</h3></div>
-              <div class="form-body">
-                <p class="form-required" data-i18n="contact.required"></p>
-                <div class="form-fields">
-                  <div class="form-field half"><label for="f-name" data-i18n="contact.name">Nome</label><input id="f-name" name="name" autocomplete="name" data-i18n-ph="contact.namePh" required /><p class="field-error" id="e-name"></p></div>
-                  <div class="form-field half"><label for="f-email" data-i18n="contact.email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" data-i18n-ph="contact.emailPh" required /><p class="field-error" id="e-email"></p></div>
-                  <div class="form-field"><label for="f-subject" data-i18n="contact.subject">Assunto</label><input id="f-subject" name="subject" data-i18n-ph="contact.subjectPh" required /><p class="field-error" id="e-subject"></p></div>
-                  <div class="form-field"><label for="f-message" data-i18n="contact.message">Mensagem</label><textarea id="f-message" name="message" rows="5" data-i18n-ph="contact.messagePh" required></textarea><p class="field-error" id="e-message"></p></div>
-                  <div class="honeypot" aria-hidden="true"><label for="f-company">Company</label><input id="f-company" name="company" tabindex="-1" autocomplete="off" /></div>
-                </div>
-                <details class="form-privacy">
-                  <summary data-i18n="contact.privacy">Como seus dados são usados</summary>
-                  <p data-i18n="contact.privacyText"></p>
-                </details>
-                <button type="submit" class="button form-submit"><span data-i18n="contact.submit">Enviar mensagem</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M12 5l7 7-7 7"/></svg></button>
-                <p class="form-fallback"><span data-i18n="contact.fallback">Prefere usar seu e-mail?</span> <a class="mailto" href="mailto:gabrielfranca5592@gmail.com" data-i18n="contact.fallbackLink">Enviar e-mail</a></p>
-              </div>
-              <div class="form-success" hidden>
-                <span class="success-mark" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span>
-                <h3 data-i18n="contact.success"></h3>
-                <p data-i18n="contact.successText"></p>
-                <button type="button" class="button form-again" data-i18n="contact.again"></button>
-              </div>
-            </form>
+          <div class="ticket-body">
+            <p class="ticket-to"><span class="mono muted" data-i18n="contact.to">para</span></p>
+            <a class="ticket-email mailto" href="mailto:gabrielfranca5592@gmail.com">gabrielfranca5592<wbr>@gmail.com</a>
+            <div class="ticket-actions">
+              <a class="btn btn-primary mailto" href="mailto:gabrielfranca5592@gmail.com"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg><span data-i18n="contact.send">Enviar e-mail</span></a>
+              <button type="button" class="btn btn-ghost" id="copy-btn"><svg class="i i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg><svg class="i i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span id="copy-label">Copiar</span></button>
+            </div>
           </div>
         </div>
-
-        <div class="social-links">
-          <p class="social-title" data-i18n="contact.socialTitle">Ou encontre comigo por aqui</p>
-          <div class="social-grid">
-            <div class="social-card has-copy">
-              <a class="social-main mailto" href="mailto:gabrielfranca5592@gmail.com">
-                <span class="social-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg></span>
-                <span><strong data-i18n="contact.email">E-mail</strong><small class="email-text">gabrielfranca5592@gmail.com</small></span>
-                <svg class="i ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg>
-              </a>
-              <button type="button" class="copy-button" data-i18n-aria="contact.copy" aria-label="Copiar e-mail"><svg class="i copy-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8h12v12H8z"/><path d="M4 16V4h12"/></svg><svg class="i check-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></button>
-              <span class="copy-feedback" role="status"></span>
-            </div>
-            <a class="social-card" href="https://linkedin.com/in/gabriel-franca5592" target="_blank" rel="noopener">
-              <span class="social-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" fill="var(--blue)"/><path d="M7 10v7M7 7v.5M11 17v-7M11 13c0-2 1.2-3 2.7-3S16 11 16 13v4" stroke="#fff" stroke-width="2.4" fill="none"/></svg></span>
-              <span><strong>LinkedIn</strong><small data-i18n="contact.linkedinSub">Trajetória e conexões</small></span>
-              <svg class="i ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg>
+        <div class="elsewhere reveal">
+          <p class="mono muted" data-i18n="contact.also">Também estou em</p>
+          <div class="elsewhere-links">
+            <a class="link-card" href="https://linkedin.com/in/gabriel-franca5592" target="_blank" rel="noopener">
+              <svg class="brand" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.5c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21H9z"/></svg>
+              <span><strong>LinkedIn</strong><small data-i18n="contact.linkedinSub">carreira e conexões</small></span>
+              <svg class="i arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
-            <a class="social-card" href="https://github.com/staiton" target="_blank" rel="noopener">
-              <span class="social-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span>
-              <span><strong>GitHub</strong><small data-i18n="contact.githubSub">Código e ferramentas</small></span>
-              <svg class="i ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg>
+            <a class="link-card" href="https://github.com/staiton" target="_blank" rel="noopener">
+              <svg class="brand" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>
+              <span><strong>GitHub</strong><small data-i18n="contact.githubSub">código e ferramentas</small></span>
+              <svg class="i arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
           </div>
         </div>
@@ -428,33 +235,15 @@
     </section>
   </main>
 
-  <!-- RODAPÉ -->
-  <footer class="site-footer" data-mark="yellow">
-    <div class="wrap">
-      <div class="footer-top">
-        <span data-i18n="footer.top">Gabriel França / Redes · Segurança</span>
-        <span class="footer-location"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span data-i18n="about.location">Natal, RN · Brasil</span></span>
-      </div>
-      <div class="footer-main">
-        <div class="footer-brand">
-          <span class="brand-mark footer-mark" aria-hidden="true">gf.</span>
-          <div>
-            <p class="footer-signature"><span class="title-lead" data-i18n="footer.lead">Até a próxima</span> <span class="title-pixel" data-i18n="footer.pixel">CONEXÃO.</span></p>
-            <p class="footer-note" data-i18n="footer.note">Construído com segurança em mente.</p>
-          </div>
-        </div>
-        <a class="button back-top" href="#topo"><span data-i18n="footer.back">Voltar ao topo</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V5M5 12l7-7 7 7"/></svg></a>
-      </div>
-      <nav class="footer-links" aria-label="Links">
-        <a class="mailto" href="mailto:gabrielfranca5592@gmail.com"><span data-i18n="contact.email">E-mail</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg></a>
-        <a href="https://linkedin.com/in/gabriel-franca5592" target="_blank" rel="noopener">LinkedIn<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg></a>
-        <a href="https://github.com/staiton" target="_blank" rel="noopener">GitHub<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg></a>
-      </nav>
-      <p class="footer-colophon">© <span id="year">2026</span> Gabriel França · <span data-i18n="footer.rights">Todos os direitos reservados</span></p>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="mono"><span class="prompt">$</span> <span data-i18n="footer.bye">sessão encerrada · obrigado pela visita</span></p>
+      <p class="footer-meta">© <span id="year">2026</span> Gabriel França · <span data-i18n="footer.rights">Todos os direitos reservados</span></p>
+      <a class="to-top" href="#topo"><span data-i18n="ui.top">Topo</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
     </div>
   </footer>
 
-  <script src="js/content.js?v=2"></script>
-  <script src="js/app.js?v=2"></script>
+  <script src="js/content.js?v=4"></script>
+  <script src="js/app.js?v=4"></script>
 </body>
 </html>
