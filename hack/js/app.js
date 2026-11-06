@@ -158,7 +158,7 @@
 
   function renderAll() {
     renderHeroStats(); renderTimeline(); renderProjects(); renderLayers(); renderFlow(); renderAbout();
-    applyText(); updateBadgeUI(); runTerminal(); observeReveals();
+    applyText(); updateBadgeUI(); if (booting) { termToken++; $("#console-body").innerHTML = ""; } else runTerminal(); observeReveals();
   }
 
   /* ---------- Reveal ---------- */
@@ -168,21 +168,21 @@
   function observeReveals() { $$(".reveal:not(.is-in)").forEach(function (el) { if (io) io.observe(el); else el.classList.add("is-in"); }); }
 
   /* ---------- Boot ---------- */
+  var booting = false;
   function boot() {
     var el = $(".boot");
     if (!motionOn()) return;
-    try { if (sessionStorage.getItem("gf-boot")) return; sessionStorage.setItem("gf-boot", "1"); } catch (e) {}
     el.hidden = false;
     var list = $("#boot-lines"), lines = T.boot, i = 0, done = false;
-    var finish = function () { if (done) return; done = true; el.classList.add("is-done"); setTimeout(function () { el.hidden = true; }, 500); };
+    var finish = function () { if (done) return; done = true; el.classList.add("is-done"); setTimeout(function () { el.hidden = true; booting = false; runTerminal(); }, 450); };
     el.addEventListener("click", finish);
     (function next() {
       if (done) return;
-      if (i >= lines.length) { setTimeout(finish, 350); return; }
+      if (i >= lines.length) { setTimeout(finish, 700); return; }
       var li = document.createElement("li");
       li.innerHTML = esc(lines[i]).replace("[ OK ]", "[ <b>OK</b> ]");
       list.appendChild(li); i++;
-      setTimeout(next, 230);
+      setTimeout(next, 450);
     })();
   }
 
@@ -337,6 +337,7 @@
   $("#year").textContent = new Date().getFullYear();
 
   /* ---------- Início ---------- */
+  booting = motionOn();
   renderBarcode();
   renderAll();
   syncMotion();
