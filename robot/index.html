@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabriel França | Analista de Redes & Segurança</title>
+  <meta name="description" content="Analista de Redes e Segurança da Informação em Natal, RN. Firewalls NGFW, SD-WAN, resposta a incidentes e ambientes MSSP." />
+  <meta name="author" content="Gabriel França" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="canonical" href="https://gabrielfranca.com.br/" />
+  <meta property="og:title" content="Gabriel França | Analista de Redes & Segurança" />
+  <meta property="og:description" content="Firewalls NGFW, SD-WAN, resposta a incidentes e ambientes MSSP." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gabrielfranca.com.br/" />
+  <meta property="og:locale" content="pt_BR" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=10" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script>
+    (function () {
+      var r = document.documentElement;
+      try {
+        var m = localStorage.getItem("gf-motion");
+        r.dataset.motion = m === "paused" || m === "on" ? m : (matchMedia("(prefers-reduced-motion: reduce)").matches ? "paused" : "on");
+        if (localStorage.getItem("gf-lang") === "en") r.lang = "en";
+      } catch (e) { r.dataset.motion = "on"; }
+    })();
+  </script>
+  <link rel="stylesheet" href="css/styles.css?v=10" />
+</head>
+<body>
+  <a class="skip-link" href="#conteudo" data-i18n="ui.skip">Pular para o conteúdo</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <!-- Boot -->
+  <div class="boot" aria-hidden="true" hidden>
+    <div class="boot-inner">
+      <p class="boot-host">root@gf:~# <span>./start-portfolio.sh</span></p>
+      <ul class="boot-lines" id="boot-lines"></ul>
+      <p class="boot-hello" id="boot-hello"></p>
+    </div>
+  </div>
+
+  <!-- Barra superior -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="logo" href="#topo" aria-label="Gabriel França, início">gf<span class="logo-dot">.</span><span class="logo-sub">sec</span></a>
+      <nav class="nav" id="nav" aria-label="Principal">
+        <a href="#carreira" data-section="carreira"><span class="nav-ep">1.1</span><span data-i18n="ui.nav.exp">carreira</span></a>
+        <a href="#homelab" data-section="homelab"><span class="nav-ep">1.2</span><span data-i18n="ui.nav.projects">homelab</span></a>
+        <a href="#stack" data-section="stack"><span class="nav-ep">1.3</span><span data-i18n="ui.nav.skills">stack</span></a>
+        <a href="#sobre" data-section="sobre"><span class="nav-ep">1.4</span><span data-i18n="ui.nav.about">dossiê</span></a>
+        <a href="#contato" data-section="contato"><span class="nav-ep">1.5</span><span data-i18n="ui.nav.contact">contato</span></a>
+      </nav>
+      <div class="tools">
+        <button type="button" class="tool lang-toggle" data-i18n-aria="ui.lang" aria-label="Mudar idioma"><span data-l="pt">PT</span><span data-l="en">EN</span></button>
+        <button type="button" class="tool" id="motion-toggle" data-i18n-aria="ui.motion" aria-label="Pausar animações" aria-pressed="false">
+          <svg class="i i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>
+          <svg class="i i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg>
+        </button>
+        <button type="button" class="tool menu-toggle" aria-expanded="false" aria-controls="nav"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="sr-only" data-i18n="ui.menu">Menu</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- HERO -->
+    <section class="hero" id="topo">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="episode"><span class="rec-dot"></span><span data-i18n="hero.episode">eps1.0_hellofriend.mov</span></p>
+          <h1 class="title-card" id="hero-name" data-text="gabriel frança">gabriel frança</h1>
+          <p class="hero-role" data-i18n="hero.role">analista de redes & segurança da informação</p>
+          <blockquote class="monologue" data-i18n="hero.monologue"></blockquote>
+          <p class="hero-text" data-i18n="hero.text"></p>
+          <div class="hero-cta">
+            <a class="btn btn-red" href="#carreira"><span data-i18n="hero.primary">ver carreira</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn" href="#contato"><span data-i18n="hero.secondary">falar comigo</span></a>
+          </div>
+        </div>
+
+        <figure class="cam">
+          <div class="cam-bar">
+            <span class="cam-title" data-i18n="hero.camTitle">cam_03 · subject_gf</span>
+            <div class="mode-tabs" role="tablist" id="mode-tabs"></div>
+          </div>
+          <div class="cam-feed" id="cam-feed">
+            <canvas id="cam-canvas" width="420" height="480" role="img" data-i18n-aria="hero.camAlt" aria-label="Imagem de câmera"></canvas>
+            <div class="cam-hud" aria-hidden="true">
+              <span class="hud-rec"><span class="rec-dot"></span><span data-i18n="hero.rec">REC</span></span>
+              <span class="hud-time" id="cam-time">00:00:00</span>
+              <span class="hud-subject" data-i18n="hero.subject">alvo: gabriel frança</span>
+              <span class="hud-coords">5°47'S 35°12'W</span>
+              <span class="reticle"></span>
+            </div>
+          </div>
+        </figure>
+      </div>
+
+      <div class="container hero-bottom">
+        <div class="term">
+          <div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="hero.termTitle">ssh gabriel@natal</span></div>
+          <div class="console-body" id="console-body"></div>
+        </div>
+        <dl class="stats" id="hero-stats"></dl>
+      </div>
+    </section>
+
+    <!-- CARREIRA -->
+    <section class="section" id="carreira">
+      <div class="container">
+        <header class="sec-head reveal">
+          <p class="ep-file scramble" data-i18n="exp.eyebrow">eps1.1_carreira.log</p>
+          <h2 data-i18n-mark="exp.title">o que eu fiz.</h2>
+          <p class="sec-intro" data-i18n="exp.intro"></p>
+        </header>
+        <ol class="log" id="timeline"></ol>
+      </div>
+    </section>
+
+    <!-- HOMELAB -->
+    <section class="section section-dark" id="homelab">
+      <div class="container">
+        <header class="sec-head reveal">
+          <p class="ep-file scramble" data-i18n="projects.eyebrow">eps1.2_homelab.sh</p>
+          <h2 data-i18n-mark="projects.title">o que eu rodo em casa.</h2>
+          <p class="sec-intro" data-i18n="projects.intro"></p>
+        </header>
+        <div class="projects" id="projects"></div>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section class="section" id="stack">
+      <div class="container">
+        <header class="sec-head reveal">
+          <p class="ep-file scramble" data-i18n="skills.eyebrow">eps1.3_stack.nmap</p>
+          <h2 data-i18n-mark="skills.title">o que eu sei.</h2>
+          <p class="sec-intro" data-i18n="skills.intro"></p>
+        </header>
+        <div class="scan reveal">
+          <div class="term scan-term">
+            <div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>nmap -sV gabriel.local</span></div>
+            <p class="scan-meta">Starting Nmap ( https://nmap.org ) · Host is up (0.0013s latency).</p>
+            <div class="scan-head" id="scan-head"></div>
+            <div class="scan-rows" role="tablist" id="layers"></div>
+          </div>
+          <div class="layer-panel" role="tabpanel" id="layer-panel"></div>
+        </div>
+        <div class="flow reveal">
+          <h3 data-i18n-mark="skills.flowTitle">quando algo quebra.</h3>
+          <ol class="flow-steps" id="flow-steps"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOSSIÊ -->
+    <section class="section section-dark" id="sobre">
+      <div class="container about-grid">
+        <div class="dossier reveal">
+          <div class="dossier-tab"><span data-i18n="about.dossier.head">arquivo confidencial</span></div>
+          <div class="dossier-body">
+            <div class="dossier-photo">
+              <img src="assets/foto.jpg" alt="Foto de Gabriel França" width="300" height="300" loading="lazy" />
+              <span class="stamp" data-i18n="about.dossier.stamp">confidencial</span>
+            </div>
+            <dl class="dossier-fields" id="dossier-fields"></dl>
+            <p class="dossier-id">#GF-5592</p>
+          </div>
+        </div>
+        <div class="about-copy">
+          <header class="sec-head reveal">
+            <p class="ep-file scramble" data-i18n="about.eyebrow">eps1.4_dossie.txt</p>
+            <h2 data-i18n-mark="about.title">quem eu sou.</h2>
+          </header>
+          <div class="about-text reveal">
+            <p data-i18n="about.p1"></p>
+            <p data-i18n="about.p2"></p>
+          </div>
+          <blockquote class="monologue about-quote reveal" data-i18n="about.quote"></blockquote>
+          <div class="facts reveal">
+            <div class="fact-block">
+              <h3 data-i18n="about.education">Formação</h3>
+              <ul class="degrees" id="degrees"></ul>
+            </div>
+            <div class="fact-block">
+              <h3 data-i18n="about.langsTitle">Idiomas</h3>
+              <ul class="langs" id="langs"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="certs reveal">
+          <p class="ep-file"><span data-i18n="about.certsTitle">ls ~/certificados</span> <span class="count" id="cert-count"></span></p>
+          <ul class="cert-grid" id="cert-grid"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="section" id="contato">
+      <div class="container contact-wrap">
+        <header class="sec-head center reveal">
+          <p class="ep-file scramble" data-i18n="contact.eyebrow">eps1.5_conexao.asc</p>
+          <h2 data-i18n-mark="contact.title">fale comigo.</h2>
+          <p class="sec-intro" data-i18n="contact.intro"></p>
+        </header>
+        <div class="pgp reveal" id="pgp">
+          <div class="pgp-head"><span class="rec-dot"></span><span data-i18n="contact.pgpHead">mensagem criptografada</span></div>
+          <pre class="pgp-block" id="pgp-block" aria-hidden="true"></pre>
+          <div class="pgp-open">
+            <p class="pgp-to"><span data-i18n="contact.to">destino</span>:</p>
+            <a class="pgp-email mailto" href="mailto:gabrielfranca5592@gmail.com" id="pgp-email">gabrielfranca5592@gmail.com</a>
+          </div>
+          <div class="pgp-actions">
+            <button type="button" class="btn" id="decrypt-btn"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0"/></svg><span id="decrypt-label">descriptografar</span></button>
+            <a class="btn btn-red mailto" href="mailto:gabrielfranca5592@gmail.com"><span data-i18n="contact.send">Enviar e-mail</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <button type="button" class="btn" id="copy-btn"><span id="copy-label">Copiar</span></button>
+          </div>
+        </div>
+        <div class="elsewhere reveal">
+          <p class="ep-file center-text" data-i18n="contact.also">outros canais</p>
+          <div class="elsewhere-links">
+            <a class="link-card" href="https://linkedin.com/in/gabriel-franca5592" target="_blank" rel="noopener">
+              <svg class="brand" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.5c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21H9z"/></svg>
+              <span><strong>LinkedIn</strong><small data-i18n="contact.linkedinSub">carreira e conexões</small></span>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="link-card" href="https://github.com/staiton" target="_blank" rel="noopener">
+              <svg class="brand" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>
+              <span><strong>GitHub</strong><small data-i18n="contact.githubSub">código e ferramentas</small></span>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-line" data-i18n="footer.bye">não existe sistema 100% seguro.</p>
+      <p class="footer-meta">© <span id="year">2026</span> Gabriel França · <span data-i18n="footer.rights">Todos os direitos reservados</span></p>
+      <a class="btn btn-sm" href="#topo">↑ <span data-i18n="ui.top">topo</span></a>
+    </div>
+  </footer>
+
+  <script src="js/content.js?v=10"></script>
+  <script src="js/app.js?v=10"></script>
+</body>
+</html>
