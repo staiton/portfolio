@@ -299,7 +299,7 @@ mark::after { content: ""; position: absolute; left: 0; right: 0; bottom: .04em;
 #copy-btn.is-copied .i-copy { display: none; }
 #copy-btn.is-copied .i-check { display: block; }
 .elsewhere { margin-top: 40px; text-align: center; }
-.elsewhere-links { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; text-align: left; }
+.elsewhere-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; text-align: left; }
 .link-card { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); text-decoration: none; transition: border-color .2s, transform .2s; }
 .link-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .link-card .brand { width: 26px; height: 26px; color: var(--ink); }
@@ -308,6 +308,8 @@ mark::after { content: ""; position: absolute; left: 0; right: 0; bottom: .04em;
 .link-card small { display: block; font: 400 12px var(--font-mono); color: var(--muted); }
 .link-card .arrow { color: var(--muted); transition: transform .2s, color .2s; }
 .link-card:hover .arrow { color: var(--accent); transform: translate(2px, -2px); }
+.link-cv:hover .arrow { transform: translateY(2px); }
+@media (max-width: 860px) and (min-width: 641px) { .elsewhere-links { grid-template-columns: 1fr 1fr; } .link-cv { grid-column: 1 / -1; } }
 
 /* ============ Rodapé ============ */
 .footer { border-top: 1px solid var(--line); padding-block: 30px; }

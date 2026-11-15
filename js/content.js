@@ -63,7 +63,7 @@ window.CONTENT = {
       less: "fechar",
       items: [
         {
-          date: "04/2025 — 03/2026",
+          date: "06/2025 — 03/2026",
           company: "TalkD Solutions Brazil",
           role: "Analista de Redes Pleno",
           summary:
@@ -246,6 +246,8 @@ window.CONTENT = {
       also: "Também estou em",
       linkedinSub: "carreira e conexões",
       githubSub: "código e ferramentas",
+      cv: "Currículo",
+      cvSub: "baixar PDF",
     },
     footer: {
       bye: "sessão encerrada · obrigado pela visita",
@@ -306,7 +308,7 @@ window.CONTENT = {
       less: "close",
       items: [
         {
-          date: "04/2025 — 03/2026",
+          date: "06/2025 — 03/2026",
           company: "TalkD Solutions Brazil",
           role: "Network Analyst (Mid-level)",
           summary:
@@ -489,6 +491,8 @@ window.CONTENT = {
       also: "Also on",
       linkedinSub: "career and connections",
       githubSub: "code and tools",
+      cv: "Résumé",
+      cvSub: "download PDF",
     },
     footer: {
       bye: "session closed · thanks for visiting",
